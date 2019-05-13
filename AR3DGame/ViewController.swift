@@ -80,6 +80,11 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
     }
     
     func torepdo() {
+        
+        sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "torpedo.mp3")!, waitForCompletion: false))
+        
+     //   SCNAction.playAudio(<#T##source: SCNAudioSource##SCNAudioSource#>, waitForCompletion: <#T##Bool#>)
+        
         torpedo = SCNNode(geometry: SCNSphere(radius: 0.05))
         
         torpedo!.geometry?.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
@@ -152,9 +157,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
-        var torpedoNode : SCNNode!
-        
-        var spaceshipNode : SCNNode!
+
         
 //        if contact.nodeA.name == "spaceship"{
 //            spaceshipNode = contact.nodeA
@@ -188,6 +191,8 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
     
     func torpedoDidCollideWithAlien(torpedoNode : SCNNode? , spaceshipNode : SCNNode?){
          guard let torpedoNode = torpedoNode ,let spaceshipNode = spaceshipNode else{return}
+        
+                sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
         
         let explosionNode = SCNNode()
         

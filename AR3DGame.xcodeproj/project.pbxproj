@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0200AB22895559007DA53D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200A922895559007DA53D /* explosion.mp3 */; };
+		6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200AA22895559007DA53D /* torpedo.mp3 */; };
 		9B2D9F442282F079003C2353 /* UFO_A_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D9F402282F079003C2353 /* UFO_A_Normal.jpg */; };
 		9B2D9F452282F079003C2353 /* UFO_A_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D9F412282F079003C2353 /* UFO_A_Diffuse.jpg */; };
 		9B2D9F472282F079003C2353 /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D9F432282F079003C2353 /* ModelLoader.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B0200A922895559007DA53D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		6B0200AA22895559007DA53D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
 		9B2D9F402282F079003C2353 /* UFO_A_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Normal.jpg; sourceTree = "<group>"; };
 		9B2D9F412282F079003C2353 /* UFO_A_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Diffuse.jpg; sourceTree = "<group>"; };
 		9B2D9F432282F079003C2353 /* ModelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLoader.swift; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B0200A822895545007DA53D /* music */ = {
+			isa = PBXGroup;
+			children = (
+				6B0200A922895559007DA53D /* explosion.mp3 */,
+				6B0200AA22895559007DA53D /* torpedo.mp3 */,
+			);
+			path = music;
+			sourceTree = "<group>";
+		};
 		9B2D9F3F2282F079003C2353 /* UFO_A */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,7 @@
 		9BC687372282D5A5005F2CBD /* AR3DGame */ = {
 			isa = PBXGroup;
 			children = (
+				6B0200A822895545007DA53D /* music */,
 				9BC687382282D5A5005F2CBD /* AppDelegate.swift */,
 				9BC6873A2282D5A5005F2CBD /* art.scnassets */,
 				9BC6873C2282D5A5005F2CBD /* ViewController.swift */,
@@ -161,8 +175,10 @@
 				9B2D9F4A22830D4D003C2353 /* FireExplosion.scnp in Resources */,
 				9B2D9F4D22830D55003C2353 /* spark.png in Resources */,
 				9BC687422282D5A9005F2CBD /* Assets.xcassets in Resources */,
+				6B0200AB22895559007DA53D /* explosion.mp3 in Resources */,
 				9BC687402282D5A5005F2CBD /* Main.storyboard in Resources */,
 				9B2D9F442282F079003C2353 /* UFO_A_Normal.jpg in Resources */,
+				6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */,
 				9B2D9F452282F079003C2353 /* UFO_A_Diffuse.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
