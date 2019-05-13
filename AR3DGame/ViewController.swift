@@ -14,7 +14,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
 
     @IBOutlet var sceneView: ARSCNView!
     
-    var torpedo : SCNNode?
+    var torpedo = ModelLoader()
     
     let spaceShipCategory  = 2
     
@@ -85,9 +85,13 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         
      //   SCNAction.playAudio(<#T##source: SCNAudioSource##SCNAudioSource#>, waitForCompletion: <#T##Bool#>)
         
-        torpedo = SCNNode(geometry: SCNSphere(radius: 0.05))
+    //    torpedo = SCNNode(geometry: SCNSphere(radius: 0.05))
         
-        torpedo!.geometry?.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+  //      torpedo!.geometry?.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        
+        torpedo = ModelLoader()
+        
+        torpedo.loadModel(modelName : "FiredScene.scn")
         
         guard let pointOfView = sceneView.pointOfView else { return}
         
@@ -95,31 +99,31 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         let myPosInWorldSpace = simd_make_float4(0,0,-2,1)
         let myPosInCamSpace = simd_mul(transform,myPosInWorldSpace)
         
-        torpedo?.name = "torpedo"
-        torpedo?.position = pointOfView.position
+        torpedo.name = "torpedo"
+        torpedo.position = pointOfView.position
         
-        torpedo?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: torpedo!, options: nil))
+        torpedo.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: torpedo, options: nil))
         
-        torpedo?.physicsBody?.categoryBitMask = torpedoCategory
+        torpedo.physicsBody?.categoryBitMask = torpedoCategory
         
-        torpedo?.physicsBody?.contactTestBitMask = spaceShipCategory
+        torpedo.physicsBody?.contactTestBitMask = spaceShipCategory
         
-        torpedo?.physicsBody?.collisionBitMask = spaceShipCategory
+        torpedo.physicsBody?.collisionBitMask = spaceShipCategory
         
 
         
         
-        print(torpedo!.categoryBitMask )
+        print(torpedo.categoryBitMask )
         
-        sceneView.scene.rootNode.addChildNode(torpedo!)
+        sceneView.scene.rootNode.addChildNode(torpedo)
         
         var actionArray = [SCNAction]()
 
-        actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 1))
+        actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 2))
        // actionArray.append(SCNAction.move(to: SCNVector3(0,0,-0.7), duration: 1))
         actionArray.append(SCNAction.removeFromParentNode())
 
-        torpedo?.runAction(SCNAction.sequence(actionArray))
+        torpedo.runAction(SCNAction.sequence(actionArray))
         
     }
     
