@@ -10,15 +10,20 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDelegate {
 
+enum BodyType : Int{
+    // Powers of 2
+    case torpedoCategory = 1
+    case spaceShipCategory = 2
+    //   case alien1 = 4
+    //   case alien2 = 8
+}
+
+class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDelegate {
+    
     @IBOutlet var sceneView: ARSCNView!
     
     var torpedo = ModelLoader()
-    
-    let spaceShipCategory  = 2
-    
-    let torpedoCategory  = 1
     
     private var virtualObjectNode = ModelLoader()
     
@@ -31,35 +36,35 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-      // sceneView.debugOptions = [.showPhysicsShapes]
+        // sceneView.debugOptions = [.showPhysicsShapes]
         
         // Create a new scene
-      //  let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //  let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-     //   sceneView.scene = scene
+        //   sceneView.scene = scene
         
         virtualObjectNode.loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025)
-    
-      //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
         
-      //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [:]))
+        //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
         
-      //  print( SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
-       
+        //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [:]))
+        
+        //  print( SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
+        
         virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.type : SCNPhysicsShape.ShapeType.boundingBox]))
         
-     //   virtualObjectNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: virtualObjectNode, options: nil))
+        //   virtualObjectNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: virtualObjectNode, options: nil))
         
         virtualObjectNode.name = "spaceship"
         
-        virtualObjectNode.physicsBody?.categoryBitMask = spaceShipCategory
+        virtualObjectNode.physicsBody?.categoryBitMask = BodyType.spaceShipCategory.rawValue
         
-        virtualObjectNode.physicsBody?.contactTestBitMask = torpedoCategory
+        virtualObjectNode.physicsBody?.contactTestBitMask = BodyType.torpedoCategory.rawValue
         
-        virtualObjectNode.physicsBody?.collisionBitMask = torpedoCategory
+        virtualObjectNode.physicsBody?.collisionBitMask = BodyType.torpedoCategory.rawValue
         
-
+        
         
         sceneView.scene.rootNode.addChildNode(virtualObjectNode)
         
@@ -79,7 +84,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         
         shooterButton.isHidden = true
         
-    //    print(virtualObjectNode.physicsBody?.categoryBitMask)
+        //    print(virtualObjectNode.physicsBody?.categoryBitMask)
         
     }
     
@@ -87,11 +92,11 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         
         sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "torpedo.mp3")!, waitForCompletion: false))
         
-     //   SCNAction.playAudio(<#T##source: SCNAudioSource##SCNAudioSource#>, waitForCompletion: <#T##Bool#>)
+        //   SCNAction.playAudio(<#T##source: SCNAudioSource##SCNAudioSource#>, waitForCompletion: <#T##Bool#>)
         
-    //    torpedo = SCNNode(geometry: SCNSphere(radius: 0.05))
+        //    torpedo = SCNNode(geometry: SCNSphere(radius: 0.05))
         
-  //      torpedo!.geometry?.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        //      torpedo!.geometry?.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         
         torpedo = ModelLoader()
         
@@ -104,34 +109,30 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         let myPosInCamSpace = simd_mul(transform,myPosInWorldSpace)
         
         torpedo.name = "torpedo"
-      
+        
         // pointOfView.position is position of ARCamera in scene
-       torpedo.position = pointOfView.position
-
-
+        torpedo.position = pointOfView.position
+        
+        
         torpedo.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: torpedo, options: [.type: SCNPhysicsShape.ShapeType.boundingBox]))
         
-//        torpedo.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: torpedo, options: nil))
+        //        torpedo.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: torpedo, options: nil))
         
-        torpedo.physicsBody?.categoryBitMask = torpedoCategory
+        torpedo.physicsBody?.categoryBitMask = BodyType.torpedoCategory.rawValue
         
-        torpedo.physicsBody?.contactTestBitMask = spaceShipCategory
+        torpedo.physicsBody?.contactTestBitMask = BodyType.spaceShipCategory.rawValue
         
-        torpedo.physicsBody?.collisionBitMask = spaceShipCategory
+        torpedo.physicsBody?.collisionBitMask = BodyType.spaceShipCategory.rawValue
         
-
-        
-        
-        print(torpedo.categoryBitMask )
         
         sceneView.scene.rootNode.addChildNode(torpedo)
         
         var actionArray = [SCNAction]()
-
+        
         actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 3))
-       // actionArray.append(SCNAction.move(to: SCNVector3(0,0,-0.7), duration: 1))
+        // actionArray.append(SCNAction.move(to: SCNVector3(0,0,-0.7), duration: 1))
         actionArray.append(SCNAction.removeFromParentNode())
-
+        
         torpedo.runAction(SCNAction.sequence(actionArray))
         
     }
@@ -139,7 +140,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
     
     @objc func buttonClicked(sender:UIButton){
         print("hi")
-
+        
         torepdo()
         
     }
@@ -153,7 +154,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -164,81 +165,86 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         // Pause the view's session
         sceneView.session.pause()
     }
-
+    
     
     
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
-
         
-//        if contact.nodeA.name == "spaceship"{
-//            spaceshipNode = contact.nodeA
-//            torpedoNode = contact.nodeB
-//        } else{
-//            torpedoNode = contact.nodeA
-//            spaceshipNode = contact.nodeB
-//        }
         
-       
-        if(contact.nodeA.physicsBody?.contactTestBitMask == spaceShipCategory && contact.nodeB.physicsBody?.contactTestBitMask == torpedoCategory){
+        //        if contact.nodeA.name == "spaceship"{
+        //            spaceshipNode = contact.nodeA
+        //            torpedoNode = contact.nodeB
+        //        } else{
+        //            torpedoNode = contact.nodeA
+        //            spaceshipNode = contact.nodeB
+        //        }
+        
+        
+        if(contact.nodeA.physicsBody?.contactTestBitMask == BodyType.spaceShipCategory.rawValue && contact.nodeB.physicsBody?.contactTestBitMask == BodyType.torpedoCategory.rawValue){
             print("Node A is a spaceShipCategory and Node B is a torpedoCategory")
-             torpedoDidCollideWithAlien(torpedoNode: contact.nodeA , spaceshipNode: contact.nodeB)
+            torpedoDidCollideWithAlien(torpedoNode: contact.nodeA , spaceshipNode: contact.nodeB)
         }
-        else if (contact.nodeA.physicsBody?.contactTestBitMask == torpedoCategory && contact.nodeB.physicsBody?.contactTestBitMask == spaceShipCategory){
+        else if (contact.nodeA.physicsBody?.contactTestBitMask == BodyType.torpedoCategory.rawValue && contact.nodeB.physicsBody?.contactTestBitMask == BodyType.spaceShipCategory.rawValue){
             torpedoDidCollideWithAlien(torpedoNode: contact.nodeB , spaceshipNode: contact.nodeA)
         }
         
-//        if (torpedoNode.categoryBitMask & 2) != 0 && (spaceshipNode.categoryBitMask & 1) != 0{
-//            print("collide")
-//        }
-    
-//        if (firstBody.categoryBitMask & torpedoCategory) != 0 && (secondBody.categoryBitMask & spaceShipCategory) != 0{
-//             print("detected buddy")
-//            torpedoDidCollideWithAlien(torpedoNode: firstBody , spaceshipNode: secondBody)
-//        }
+        //        if (torpedoNode.categoryBitMask & 2) != 0 && (spaceshipNode.categoryBitMask & 1) != 0{
+        //            print("collide")
+        //        }
+        
+        //        if (firstBody.categoryBitMask & torpedoCategory) != 0 && (secondBody.categoryBitMask & spaceShipCategory) != 0{
+        //             print("detected buddy")
+        //            torpedoDidCollideWithAlien(torpedoNode: firstBody , spaceshipNode: secondBody)
+        //        }
         
         
         
     }
     
     func torpedoDidCollideWithAlien(torpedoNode : SCNNode? , spaceshipNode : SCNNode?){
-         guard let torpedoNode = torpedoNode ,let spaceshipNode = spaceshipNode else{return}
+        guard let torpedoNode = torpedoNode ,let spaceshipNode = spaceshipNode else{return}
         
-                sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
-        
-        let explosionNode = SCNNode()
-        
-        let explosion = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)
+        sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
         
         
         
-        explosionNode.addParticleSystem(explosion!)
-        
-        explosionNode.position = spaceshipNode.presentation.position
-      //  spaceshipNode.addParticleSystem(explosion!)
-       // torpedoNode.removeFromParentNode()
-        sceneView.scene.rootNode.addChildNode(explosionNode)
-        
-        torpedoNode.removeFromParentNode()
-        spaceshipNode.removeFromParentNode()
-        
-        
-        
-        explosionNode.runAction(SCNAction.wait(duration: 1)) { [unowned self] in
-            explosionNode.removeFromParentNode()
+        torpedoNode.runAction(SCNAction.fadeOut(duration: 0.15)){ [unowned self] in
+           
             
+            let explosionNode = SCNNode()
             
-             let xPos = self.randomPosition(lower: -1.5, upper: 1.5)
-            self.virtualObjectNode.position = self.virtualObjectNode.presentation.position
-            self.virtualObjectNode.position = SCNVector3(x: xPos, y: 0, z: -0.7)
-            
-            self.sceneView.scene.rootNode.addChildNode(self.virtualObjectNode)
+            let explosion = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)
             
             
             
+            explosionNode.addParticleSystem(explosion!)
+            
+            explosionNode.position = spaceshipNode.presentation.position
+            //  spaceshipNode.addParticleSystem(explosion!)
+            // torpedoNode.removeFromParentNode()
+            self.sceneView.scene.rootNode.addChildNode(explosionNode)
+            
+             torpedoNode.removeFromParentNode()
+            spaceshipNode.removeFromParentNode()
+            
+            explosionNode.runAction(SCNAction.wait(duration: 1)) { [unowned self] in
+                explosionNode.removeFromParentNode()
+                
+                
+                let xPos = self.randomPosition(lower: -1.5, upper: 1.5)
+                self.virtualObjectNode.position = self.virtualObjectNode.presentation.position
+                self.virtualObjectNode.position = SCNVector3(x: xPos, y: 0, z: -0.7)
+                
+                self.sceneView.scene.rootNode.addChildNode(self.virtualObjectNode)
+                
+                
+                
+            }
         }
-//
+        
+
     }
     
     func randomPosition(lower : Float , upper : Float) -> Float{
@@ -248,14 +254,14 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
     
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
+    /*
+     // Override to create and configure nodes for anchors added to the view's session.
+     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+     let node = SCNNode()
      
-        return node
-    }
-*/
+     return node
+     }
+     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
