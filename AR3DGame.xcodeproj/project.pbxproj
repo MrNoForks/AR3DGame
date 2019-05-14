@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		6B0200AB22895559007DA53D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200A922895559007DA53D /* explosion.mp3 */; };
 		6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200AA22895559007DA53D /* torpedo.mp3 */; };
+		6B6436B72289749E008771A6 /* FiredScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B6436B62289749E008771A6 /* FiredScene.scn */; };
+		6BAEE46F228980CD008C16C3 /* Metal_Galvanized_001_basecolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEE46E228980CD008C16C3 /* Metal_Galvanized_001_basecolor.jpg */; };
+		6BAEE471228980EA008C16C3 /* Metal_Galvanized_001_normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEE470228980EA008C16C3 /* Metal_Galvanized_001_normal.jpg */; };
+		6BAEE47322898105008C16C3 /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEE47222898105008C16C3 /* Metal_Galvanized_001_ambientOcclusion.jpg */; };
+		6BAEE47622898126008C16C3 /* Metal_Galvanized_001_metallic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEE47422898126008C16C3 /* Metal_Galvanized_001_metallic.jpg */; };
+		6BAEE47722898126008C16C3 /* Metal_Galvanized_001_roughness.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BAEE47522898126008C16C3 /* Metal_Galvanized_001_roughness.jpg */; };
 		9B2D9F442282F079003C2353 /* UFO_A_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D9F402282F079003C2353 /* UFO_A_Normal.jpg */; };
 		9B2D9F452282F079003C2353 /* UFO_A_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D9F412282F079003C2353 /* UFO_A_Diffuse.jpg */; };
 		9B2D9F472282F079003C2353 /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D9F432282F079003C2353 /* ModelLoader.swift */; };
@@ -27,6 +33,12 @@
 /* Begin PBXFileReference section */
 		6B0200A922895559007DA53D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		6B0200AA22895559007DA53D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		6B6436B62289749E008771A6 /* FiredScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = FiredScene.scn; sourceTree = "<group>"; };
+		6BAEE46E228980CD008C16C3 /* Metal_Galvanized_001_basecolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_basecolor.jpg; sourceTree = "<group>"; };
+		6BAEE470228980EA008C16C3 /* Metal_Galvanized_001_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_normal.jpg; sourceTree = "<group>"; };
+		6BAEE47222898105008C16C3 /* Metal_Galvanized_001_ambientOcclusion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_ambientOcclusion.jpg; sourceTree = "<group>"; };
+		6BAEE47422898126008C16C3 /* Metal_Galvanized_001_metallic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_metallic.jpg; sourceTree = "<group>"; };
+		6BAEE47522898126008C16C3 /* Metal_Galvanized_001_roughness.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_roughness.jpg; sourceTree = "<group>"; };
 		9B2D9F402282F079003C2353 /* UFO_A_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Normal.jpg; sourceTree = "<group>"; };
 		9B2D9F412282F079003C2353 /* UFO_A_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Diffuse.jpg; sourceTree = "<group>"; };
 		9B2D9F432282F079003C2353 /* ModelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLoader.swift; sourceTree = "<group>"; };
@@ -104,7 +116,13 @@
 				9B2D9F4822830D4C003C2353 /* FireExplosion.scnp */,
 				9B2D9F4C22830D55003C2353 /* spark.png */,
 				9B2D9F4922830D4D003C2353 /* ship.scn */,
+				6B6436B62289749E008771A6 /* FiredScene.scn */,
 				9B2D9F432282F079003C2353 /* ModelLoader.swift */,
+				6BAEE470228980EA008C16C3 /* Metal_Galvanized_001_normal.jpg */,
+				6BAEE47222898105008C16C3 /* Metal_Galvanized_001_ambientOcclusion.jpg */,
+				6BAEE47422898126008C16C3 /* Metal_Galvanized_001_metallic.jpg */,
+				6BAEE47522898126008C16C3 /* Metal_Galvanized_001_roughness.jpg */,
+				6BAEE46E228980CD008C16C3 /* Metal_Galvanized_001_basecolor.jpg */,
 				9B2D9F3F2282F079003C2353 /* UFO_A */,
 			);
 			path = AR3DGame;
@@ -169,17 +187,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BAD82C522845CCD003752DF /* UFO_A.dae in Resources */,
+				6BAEE471228980EA008C16C3 /* Metal_Galvanized_001_normal.jpg in Resources */,
 				9BC6873B2282D5A5005F2CBD /* art.scnassets in Resources */,
+				6BAEE47722898126008C16C3 /* Metal_Galvanized_001_roughness.jpg in Resources */,
 				9B2D9F4B22830D4D003C2353 /* ship.scn in Resources */,
 				9BC687452282D5A9005F2CBD /* LaunchScreen.storyboard in Resources */,
+				6B6436B72289749E008771A6 /* FiredScene.scn in Resources */,
 				9B2D9F4A22830D4D003C2353 /* FireExplosion.scnp in Resources */,
+				6BAEE47622898126008C16C3 /* Metal_Galvanized_001_metallic.jpg in Resources */,
 				9B2D9F4D22830D55003C2353 /* spark.png in Resources */,
 				9BC687422282D5A9005F2CBD /* Assets.xcassets in Resources */,
 				6B0200AB22895559007DA53D /* explosion.mp3 in Resources */,
 				9BC687402282D5A5005F2CBD /* Main.storyboard in Resources */,
 				9B2D9F442282F079003C2353 /* UFO_A_Normal.jpg in Resources */,
 				6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */,
+				6BAEE47322898105008C16C3 /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */,
 				9B2D9F452282F079003C2353 /* UFO_A_Diffuse.jpg in Resources */,
+				6BAEE46F228980CD008C16C3 /* Metal_Galvanized_001_basecolor.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

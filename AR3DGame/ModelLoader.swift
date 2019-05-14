@@ -54,17 +54,23 @@ class ModelLoader: SCNNode {
         
         self.position = SCNVector3(x: x, y: y, z: z)
         
-        self.scale = SCNVector3(x: size/2, y: size/2, z: size/2)
+        
         
         
         
         if appearanceAnimation{
+            
+            self.scale = SCNVector3(x: size/2, y: size/2, z: size/2)
+            
             let appearanceAction = SCNAction.scale(to: CGFloat(size), duration: time)
             
             appearanceAction.timingMode = .easeOut
             
             self.runAction(appearanceAction)
             
+        }
+        else{
+          self.scale = SCNVector3(x: size, y: size, z: size)
         }
         
     }

@@ -31,7 +31,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-        //sceneView.debugOptions = .showPhysicsShapes
+      // sceneView.debugOptions = [.showPhysicsShapes]
         
         // Create a new scene
       //  let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -39,11 +39,15 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         // Set the scene to the view
      //   sceneView.scene = scene
         
-        virtualObjectNode.loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.05)
+        virtualObjectNode.loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025)
     
-        virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
+      //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
+        
+      //  virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [:]))
         
       //  print( SCNPhysicsShape(node: virtualObjectNode, options: [.scale:0.0005]))
+       
+        virtualObjectNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: virtualObjectNode, options: [.type : SCNPhysicsShape.ShapeType.boundingBox]))
         
      //   virtualObjectNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: virtualObjectNode, options: nil))
         
@@ -100,9 +104,14 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         let myPosInCamSpace = simd_mul(transform,myPosInWorldSpace)
         
         torpedo.name = "torpedo"
-        torpedo.position = pointOfView.position
+      
+        // pointOfView.position is position of ARCamera in scene
+       torpedo.position = pointOfView.position
+
+
+        torpedo.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: torpedo, options: [.type: SCNPhysicsShape.ShapeType.boundingBox]))
         
-        torpedo.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: torpedo, options: nil))
+//        torpedo.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: torpedo, options: nil))
         
         torpedo.physicsBody?.categoryBitMask = torpedoCategory
         
@@ -119,7 +128,7 @@ class ViewController: UIViewController,ARSCNViewDelegate ,SCNPhysicsContactDeleg
         
         var actionArray = [SCNAction]()
 
-        actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 2))
+        actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 3))
        // actionArray.append(SCNAction.move(to: SCNVector3(0,0,-0.7), duration: 1))
         actionArray.append(SCNAction.removeFromParentNode())
 
