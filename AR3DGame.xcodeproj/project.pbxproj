@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		6B0200AB22895559007DA53D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200A922895559007DA53D /* explosion.mp3 */; };
 		6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200AA22895559007DA53D /* torpedo.mp3 */; };
+		6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */; };
+		6B89CCE12293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */; };
+		6B89CCE22293C02E00E258AF /* FiredScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD52293C02E00E258AF /* FiredScene.scn */; };
+		6B89CCE32293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD62293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg */; };
+		6B89CCE42293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD72293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg */; };
+		6B89CCE52293C02E00E258AF /* Metal_Galvanized_001_normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */; };
+		6B89CCE62293C02E00E258AF /* UFO_A_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */; };
+		6B89CCE72293C02E00E258AF /* UFO_A_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */; };
+		6B89CCE82293C02E00E258AF /* UFO_A.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDC2293C02E00E258AF /* UFO_A.dae */; };
+		6B89CCE92293C02E00E258AF /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDE2293C02E00E258AF /* spark.png */; };
+		6B89CCEA2293C02E00E258AF /* FireExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDF2293C02E00E258AF /* FireExplosion.scnp */; };
 		6B8C57BB2292B24A0080ED1E /* UFO_A.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */; };
 		6B8C57BD2292B2930080ED1E /* Torpedo.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B8C57BC2292B2930080ED1E /* Torpedo.scnassets */; };
 		6B8C57E12292B4C30080ED1E /* Explosion.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B8C57C02292B2CF0080ED1E /* Explosion.scnassets */; };
@@ -25,6 +36,17 @@
 /* Begin PBXFileReference section */
 		6B0200A922895559007DA53D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		6B0200AA22895559007DA53D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_basecolor.jpg; sourceTree = "<group>"; };
+		6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_metallic.jpg; sourceTree = "<group>"; };
+		6B89CCD52293C02E00E258AF /* FiredScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = FiredScene.scn; sourceTree = "<group>"; };
+		6B89CCD62293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_roughness.jpg; sourceTree = "<group>"; };
+		6B89CCD72293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_ambientOcclusion.jpg; sourceTree = "<group>"; };
+		6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_normal.jpg; sourceTree = "<group>"; };
+		6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Normal.jpg; sourceTree = "<group>"; };
+		6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Diffuse.jpg; sourceTree = "<group>"; };
+		6B89CCDC2293C02E00E258AF /* UFO_A.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_A.dae; sourceTree = "<group>"; };
+		6B89CCDE2293C02E00E258AF /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		6B89CCDF2293C02E00E258AF /* FireExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireExplosion.scnp; sourceTree = "<group>"; };
 		6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = UFO_A.scnassets; sourceTree = "<group>"; };
 		6B8C57BC2292B2930080ED1E /* Torpedo.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Torpedo.scnassets; sourceTree = "<group>"; };
 		6B8C57C02292B2CF0080ED1E /* Explosion.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Explosion.scnassets; sourceTree = "<group>"; };
@@ -60,6 +82,38 @@
 			path = music;
 			sourceTree = "<group>";
 		};
+		6B89CCD22293C02E00E258AF /* Torpedo */ = {
+			isa = PBXGroup;
+			children = (
+				6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */,
+				6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */,
+				6B89CCD52293C02E00E258AF /* FiredScene.scn */,
+				6B89CCD62293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg */,
+				6B89CCD72293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg */,
+				6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */,
+			);
+			path = Torpedo;
+			sourceTree = "<group>";
+		};
+		6B89CCD92293C02E00E258AF /* UFO_A */ = {
+			isa = PBXGroup;
+			children = (
+				6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */,
+				6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */,
+				6B89CCDC2293C02E00E258AF /* UFO_A.dae */,
+			);
+			path = UFO_A;
+			sourceTree = "<group>";
+		};
+		6B89CCDD2293C02E00E258AF /* Explosion */ = {
+			isa = PBXGroup;
+			children = (
+				6B89CCDE2293C02E00E258AF /* spark.png */,
+				6B89CCDF2293C02E00E258AF /* FireExplosion.scnp */,
+			);
+			path = Explosion;
+			sourceTree = "<group>";
+		};
 		6BC21E3E228AD87D00C2A627 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +146,9 @@
 			children = (
 				6B0200A822895545007DA53D /* music */,
 				6BC21E3E228AD87D00C2A627 /* Supporting Files */,
+				6B89CCDD2293C02E00E258AF /* Explosion */,
+				6B89CCD22293C02E00E258AF /* Torpedo */,
+				6B89CCD92293C02E00E258AF /* UFO_A */,
 				9BC6873A2282D5A5005F2CBD /* art.scnassets */,
 				6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */,
 				6B8C57C02292B2CF0080ED1E /* Explosion.scnassets */,
@@ -162,15 +219,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B89CCE22293C02E00E258AF /* FiredScene.scn in Resources */,
+				6B89CCE62293C02E00E258AF /* UFO_A_Normal.jpg in Resources */,
+				6B89CCE52293C02E00E258AF /* Metal_Galvanized_001_normal.jpg in Resources */,
+				6B89CCE12293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg in Resources */,
 				6B8C57E12292B4C30080ED1E /* Explosion.scnassets in Resources */,
+				6B89CCE42293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */,
+				6B89CCE92293C02E00E258AF /* spark.png in Resources */,
 				9BC6873B2282D5A5005F2CBD /* art.scnassets in Resources */,
 				6B8C57BD2292B2930080ED1E /* Torpedo.scnassets in Resources */,
 				9BC687452282D5A9005F2CBD /* LaunchScreen.storyboard in Resources */,
 				9BC687422282D5A9005F2CBD /* Assets.xcassets in Resources */,
+				6B89CCE72293C02E00E258AF /* UFO_A_Diffuse.jpg in Resources */,
+				6B89CCE82293C02E00E258AF /* UFO_A.dae in Resources */,
 				6B0200AB22895559007DA53D /* explosion.mp3 in Resources */,
 				9BC687402282D5A5005F2CBD /* Main.storyboard in Resources */,
+				6B89CCEA2293C02E00E258AF /* FireExplosion.scnp in Resources */,
 				6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */,
 				6B8C57BB2292B24A0080ED1E /* UFO_A.scnassets in Resources */,
+				6B89CCE32293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg in Resources */,
+				6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

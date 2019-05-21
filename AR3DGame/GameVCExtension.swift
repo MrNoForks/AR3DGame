@@ -6,7 +6,9 @@
 //  Copyright © 2019 Boppo. All rights reserved.
 //
 
+
 import ARKit
+
 
 struct BitMask {
     
@@ -16,58 +18,43 @@ struct BitMask {
     
 }
 
-extension GameVC
-{
-   
-    func randomPosition(lower : Float , upper : Float) -> Float{
-        return Float(arc4random())/Float(UInt32.max) * (lower - upper) + upper
+extension GameVC{
+    
+    func createSpaceShipNode() -> SCNNode?{
+        if let node = ModelLoader().loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025){
+            
+            //CollisionBitMask 0 means Idc about collision as we are gonna handle it
+            //we dont want to simulate any collision for the node
+            setupPhysicsBody(forNode: node, name: "SpaceShip", physicBodyType: .static, categoryBitMask: BitMask.spaceShipCategory, collisionBitMask: BitMask.torpedoCategory, contactBitMask: BitMask.torpedoCategory)
+            
+            return node
+        }
+        return nil
     }
     
-    //Setting Up SpaceNode
-    func setupSpaceShipNode(){
+    func createTorpedoNode() -> SCNNode?{
+        if let node =  ModelLoader().loadModel(modelName: "FiredScene.scn"){
+            
+            setupPhysicsBody(forNode: node, name: "Torpedo", physicBodyType: .static, categoryBitMask: BitMask.torpedoCategory, collisionBitMask: BitMask.spaceShipCategory, contactBitMask: BitMask.spaceShipCategory)
+            
+            return node
+        }
         
-        spaceShipNode.loadModel(modelName: "UFO_A.scnassets/UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025)
-        
-        
-        setupPhysicsBody(forNode: spaceShipNode, name: "SpaceShip", physicBodyType: .static, categoryBitMask: BitMask.spaceShipCategory, collisionBitMask: 0, contactBitMask: BitMask.torpedoCategory)
-        
+        return nil
     }
     
-    func fireTorepdo() {
-       
-        print("Number of nodes \(sceneView.scene.rootNode.childNodes.count)")
+    func createExplosionNode()->SCNNode?{
+        //named: Explosion.scnassets/FireExplosion.scnp
+        if let explosionParticleSystem = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil){
+            
+            let node = SCNNode()
+            
+            node.addParticleSystem(explosionParticleSystem)
+            
+            return node
+        }
         
-        sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "torpedo.mp3")!, waitForCompletion: false))
-        
-        torpedoNode = ModelLoader()
-        
-        torpedoNode.loadModel(modelName : "Torpedo.scnassets/FiredScene.scn")
-        
-        guard let pointOfView = sceneView.pointOfView else { return}
-        
-        let transform = pointOfView.simdTransform
-        let myPosInWorldSpace = simd_make_float4(0,0,-2,1)
-        let myPosInCamSpace = simd_mul(transform,myPosInWorldSpace)
-        
-        // pointOfView.position is position of ARCamera in scene
-        torpedoNode.position = pointOfView.position
-        
-        
-        setupPhysicsBody(forNode: torpedoNode, name: "Torpedo", physicBodyType: .static, categoryBitMask: BitMask.torpedoCategory, collisionBitMask: 0, contactBitMask: BitMask.spaceShipCategory)
-        
-        // Adding torrpedoNode
-        sceneView.scene.rootNode.addChildNode(torpedoNode)
-        
-        var actionArray = [SCNAction]()
-        
-        //Moving torpedo in from current location to specified location
-        actionArray.append(SCNAction.move(to: SCNVector3(myPosInCamSpace.x,myPosInCamSpace.y,myPosInCamSpace.z), duration: 3))
-        
-        // actionArray.append(SCNAction.move(to: SCNVector3(0,0,-0.7), duration: 1))
-        actionArray.append(SCNAction.removeFromParentNode())
-        
-        //running all sequence of actions
-        torpedoNode.runAction(SCNAction.sequence(actionArray))
+        return nil
         
     }
     
@@ -90,40 +77,102 @@ extension GameVC
         
     }
     
-    func torpedoDidCollideWithAlien(torpedoNode : SCNNode? , spaceshipNode : SCNNode?){
-        guard let torpedoNode = torpedoNode ,let spaceshipNode = spaceshipNode else{return}
+    // For random spawner Logic
+    func randomPosition(lower : Float , upper : Float) -> Float{
+        return Float(arc4random())/Float(UInt32.max) * (lower - upper) + upper
+    }
+    
+    //Fire torpedo
+    func fireTorpedo(){
         
+        torpedoNode = createTorpedoNode()
+        
+        //Checking if torpedoNode is present else return to avoid no torpedo exceptions
+        guard let torpedoNode = torpedoNode else {return}
+        
+        let torpedo = torpedoNode.clone()
+        
+        //Adding sounds for firing of torpedo
+        sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "torpedo.mp3")!, waitForCompletion: false))
+        
+        //trying to get pointView i.e. camera position
+        guard let pointOfView = sceneView.pointOfView else {return}
+        
+        //Converting pointView properties to 4x4 matrix for manipulating
+        //rotation,position,scale,(world or local) position OpenGL 4x4 matrix
+        let cameraTransform = pointOfView.simdTransform
+        
+        //For where to place In CameraView in worldspace i.e. location to travel for torpedo -2 in z dimension
+        let newPos = simd_make_float4(0,0,-2,1)
+        
+        // Now multiplying cameraTransform  and newPos to place object with respect to camera
+        let newPosInWorldSpace = simd_mul(cameraTransform,newPos)
+        
+        torpedo.position = pointOfView.position
+        
+        // Adding torrpedoNode
+        sceneView.scene.rootNode.addChildNode(torpedo)
+        
+        //Creating a blank SCNACtion Array to hold sequence of actions
+        var actionArray = [SCNAction]()
+        
+        //Moving torpedo in from current location to specified location
+        actionArray.append(SCNAction.move(to: SCNVector3(x: newPosInWorldSpace.x, y: newPosInWorldSpace.y, z: newPosInWorldSpace.z), duration: 3))
+        
+        //Removing torpedo from scene
+        actionArray.append(SCNAction.removeFromParentNode())
+        
+        //running all sequence of actions
+        torpedo.runAction(SCNAction.sequence(actionArray))
+        
+        print("Nodes in scene are \(sceneView.scene.rootNode.childNodes.count)")
+        
+    }
+    
+    //For collision between torpedo and spaceNode
+    func torpedoDidCollideWithAlien(torpedoNode : SCNNode?, spaceShipNode : SCNNode?,explosionNode : SCNNode?){
+        
+        //Checking if nodes ain't empty else return to avoid exceptions
+        guard let torpedoNode = torpedoNode ,let spaceShipNode = spaceShipNode , let explosionNode = explosionNode else{return}
+        
+        // For playing audio of explosion
         sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
         
-        torpedoNode.runAction(SCNAction.fadeOut(duration: 0.15)){ [unowned self] in
+        explosionNode.position = spaceShipNode.presentation.position
+        
+        self.sceneView.scene.rootNode.addChildNode(explosionNode)
+        
+        var torpedoNodeActionArray = [SCNAction]()
+        
+        torpedoNodeActionArray.append(SCNAction.fadeOut(duration: 0.15))
+        
+        torpedoNodeActionArray.append(SCNAction.removeFromParentNode())
+        
+        torpedoNode.runAction(SCNAction.sequence(torpedoNodeActionArray))
+        
+        spaceShipNode.removeFromParentNode()
+        
+        var explosionNodeActionArray = [SCNAction]()
+        
+        explosionNodeActionArray.append(SCNAction.wait(duration: 1))
+        
+        explosionNodeActionArray.append(SCNAction.removeFromParentNode())
+        
+        explosionNode.runAction(SCNAction.sequence(explosionNodeActionArray))
+        
+        //Random number from -1.5 to 1.5
+        let xPos = randomPosition(lower: -1.5, upper: 1.5)
+        
+        if let spaceShipNode = self.spaceShipNode{
             
+            spaceShipNode.position.x = xPos
             
-            let explosionNode = SCNNode()
-            
-            let explosion = SCNParticleSystem(named: "Explosion.scnassets/FireExplosion.scnp", inDirectory: nil)
-            
-            explosionNode.addParticleSystem(explosion!)
-            
-            explosionNode.position = spaceshipNode.presentation.position
-            
-            self.sceneView.scene.rootNode.addChildNode(explosionNode)
-            
-            torpedoNode.removeFromParentNode()
-            spaceshipNode.removeFromParentNode()
-            
-            explosionNode.runAction(SCNAction.wait(duration: 1)) { [unowned self] in
-                explosionNode.removeFromParentNode()
-                
-                let xPos = self.randomPosition(lower: -1.5, upper: 1.5)
-                self.spaceShipNode.position = self.spaceShipNode.presentation.position
-                self.spaceShipNode.position = SCNVector3(x: xPos, y: 0, z: -0.7)
-                
-                self.sceneView.scene.rootNode.addChildNode(self.spaceShipNode)
-                
-            }
+            sceneView.scene.rootNode.addChildNode(spaceShipNode)
         }
+        
+        
+        
+        
     }
     
 }
-
-
