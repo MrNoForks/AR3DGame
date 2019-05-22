@@ -21,7 +21,8 @@ struct BitMask {
 extension GameVC{
     
     func createSpaceShipNode() -> SCNNode?{
-        if let node = ModelLoader().loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025){
+        if let node = ModelLoader().loadModel(modelName: "UFO_Alpha", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 1){
+            // ModelLoader().loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025)
             
             //CollisionBitMask 0 means Idc about collision as we are gonna handle it
             //we dont want to simulate any collision for the node
@@ -61,8 +62,28 @@ extension GameVC{
     func  setupPhysicsBody(forNode  node: SCNNode,name : String,physicBodyType type : SCNPhysicsBodyType,categoryBitMask category : Int,collisionBitMask collsion : Int , contactBitMask contact : Int){
         
         //Defining nodes physics body and its shape (static it doesnt move, dynamic it moves on contact, kinematic it doesnt move but can apply force to other object when in contact)
-        node.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(node: node, options: [.type: SCNPhysicsShape.ShapeType.boundingBox]))
         
+        //MARK:- Fusing SCNShapes of childNodes to create a one geometry
+        //Array of physicsShapes for combing geomtry of childNodes
+        var physicsShapes : [SCNPhysicsShape] = []
+        
+        //Iterating childs of Node
+        for child in node.childNodes {
+            
+            //If Child has geomtry we will append it to physicsShapes
+            if let geometry = child.geometry {
+                
+            physicsShapes.append(SCNPhysicsShape(geometry: geometry, options: nil))
+                
+            }
+            
+        }
+        
+        node.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(shapes: physicsShapes,transforms: [NSValue(scnMatrix4: SCNMatrix4(float4x4(0.8)))] ))
+        
+        //For bounding Box
+    //    node.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(node: node, options: [.type: SCNPhysicsShape.ShapeType.boundingBox]))
+
         //Giving node a name
         node.name = name
         

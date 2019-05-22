@@ -43,7 +43,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
             //Setting that VC I am delegate for physicContact
             sceneView.scene.physicsWorld.contactDelegate = self
             
-            //    sceneView.debugOptions = .showPhysicsShapes
+                sceneView.debugOptions = .showPhysicsShapes
             
             
             sceneView.delegate = self
