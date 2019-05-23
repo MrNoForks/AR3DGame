@@ -7,44 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B003D812295907700A9741F /* Flying_Saucer_Emission.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D7E2295907700A9741F /* Flying_Saucer_Emission.jpg */; };
-		6B003D822295907700A9741F /* Flying_Saucer_Normal_OpenGL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D7F2295907700A9741F /* Flying_Saucer_Normal_OpenGL.jpg */; };
-		6B003D832295907700A9741F /* Flying_Saucer_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D802295907700A9741F /* Flying_Saucer_Diffuse.jpg */; };
-		6B003D852295921E00A9741F /* Flying_Saucer_Color.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D842295921D00A9741F /* Flying_Saucer_Color.jpg */; };
-		6B003D87229593A900A9741F /* Flying_Saucer_Color_blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D86229593A900A9741F /* Flying_Saucer_Color_blue.jpg */; };
-		6B003D89229594A500A9741F /* Flying_Saucer_Emission_blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B003D88229594A500A9741F /* Flying_Saucer_Emission_blue.jpg */; };
 		6B0200AB22895559007DA53D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200A922895559007DA53D /* explosion.mp3 */; };
 		6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200AA22895559007DA53D /* torpedo.mp3 */; };
-		6B1042E3229572C200A17F5C /* UFO_C_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D0229572C000A17F5C /* UFO_C_Normal.jpg */; };
-		6B1042E5229572C200A17F5C /* UFO_C_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D2229572C000A17F5C /* UFO_C_Diffuse.jpg */; };
-		6B1042E6229572C200A17F5C /* UFO_B_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D4229572C100A17F5C /* UFO_B_Diffuse.jpg */; };
-		6B1042E8229572C200A17F5C /* UFO_B_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D6229572C100A17F5C /* UFO_B_Normal.jpg */; };
-		6B1042E9229572C200A17F5C /* UFO_D_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D8229572C100A17F5C /* UFO_D_Diffuse.jpg */; };
-		6B1042EA229572C200A17F5C /* UFO_D_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042D9229572C100A17F5C /* UFO_D_Normal.jpg */; };
-		6B1042EC229572C200A17F5C /* UFO_E_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042DC229572C200A17F5C /* UFO_E_Normal.jpg */; };
-		6B1042ED229572C200A17F5C /* UFO_E_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042DD229572C200A17F5C /* UFO_E_Diffuse.jpg */; };
-		6B1042EF229572C200A17F5C /* UFO_F_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042E0229572C200A17F5C /* UFO_F_Normal.jpg */; };
-		6B1042F1229572C200A17F5C /* UFO_F_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042E2229572C200A17F5C /* UFO_F_Diffuse.jpg */; };
-		6B1042F3229574B500A17F5C /* UFO_B.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042F2229574B500A17F5C /* UFO_B.dae */; };
-		6B1042F52295759000A17F5C /* UFO_C.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042F42295759000A17F5C /* UFO_C.dae */; };
-		6B1042F7229580B100A17F5C /* UFO_D.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042F6229580B100A17F5C /* UFO_D.dae */; };
-		6B1042F9229580C000A17F5C /* UFO_E.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042F8229580C000A17F5C /* UFO_E.dae */; };
-		6B1042FB229580CE00A17F5C /* UFO_F.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042FA229580CE00A17F5C /* UFO_F.dae */; };
-		6B104304229588A000A17F5C /* UFO_Diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042FE229588A000A17F5C /* UFO_Diffuse.png */; };
-		6B104305229588A000A17F5C /* UFO_Emission.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1042FF229588A000A17F5C /* UFO_Emission.png */; };
-		6B104306229588A000A17F5C /* UFO_Glossiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B104300229588A000A17F5C /* UFO_Glossiness.png */; };
-		6B104307229588A000A17F5C /* UFO_Roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B104301229588A000A17F5C /* UFO_Roughness.png */; };
-		6B104308229588A000A17F5C /* UFO_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B104302229588A000A17F5C /* UFO_Normal.png */; };
-		6B104309229588A000A17F5C /* UFO_Specular.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B104303229588A000A17F5C /* UFO_Specular.png */; };
-		6B10431122958C4700A17F5C /* UFO_Alpha.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B10431022958C4700A17F5C /* UFO_Alpha.dae */; };
 		6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */; };
 		6B89CCE12293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */; };
 		6B89CCE22293C02E00E258AF /* FiredScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD52293C02E00E258AF /* FiredScene.scn */; };
 		6B89CCE32293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD62293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg */; };
 		6B89CCE42293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD72293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg */; };
 		6B89CCE52293C02E00E258AF /* Metal_Galvanized_001_normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */; };
-		6B89CCE62293C02E00E258AF /* UFO_A_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */; };
-		6B89CCE72293C02E00E258AF /* UFO_A_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */; };
 		6B89CCE92293C02E00E258AF /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDE2293C02E00E258AF /* spark.png */; };
 		6B89CCEA2293C02E00E258AF /* FireExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCDF2293C02E00E258AF /* FireExplosion.scnp */; };
 		6B8C57BB2292B24A0080ED1E /* UFO_A.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */; };
@@ -61,45 +31,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6B003D7E2295907700A9741F /* Flying_Saucer_Emission.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Emission.jpg; sourceTree = "<group>"; };
-		6B003D7F2295907700A9741F /* Flying_Saucer_Normal_OpenGL.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Normal_OpenGL.jpg; sourceTree = "<group>"; };
-		6B003D802295907700A9741F /* Flying_Saucer_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Diffuse.jpg; sourceTree = "<group>"; };
-		6B003D842295921D00A9741F /* Flying_Saucer_Color.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Color.jpg; sourceTree = "<group>"; };
-		6B003D86229593A900A9741F /* Flying_Saucer_Color_blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Color_blue.jpg; sourceTree = "<group>"; };
-		6B003D88229594A500A9741F /* Flying_Saucer_Emission_blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Flying_Saucer_Emission_blue.jpg; sourceTree = "<group>"; };
 		6B0200A922895559007DA53D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		6B0200AA22895559007DA53D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
-		6B1042D0229572C000A17F5C /* UFO_C_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_C_Normal.jpg; sourceTree = "<group>"; };
-		6B1042D2229572C000A17F5C /* UFO_C_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_C_Diffuse.jpg; sourceTree = "<group>"; };
-		6B1042D4229572C100A17F5C /* UFO_B_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_B_Diffuse.jpg; sourceTree = "<group>"; };
-		6B1042D6229572C100A17F5C /* UFO_B_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_B_Normal.jpg; sourceTree = "<group>"; };
-		6B1042D8229572C100A17F5C /* UFO_D_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_D_Diffuse.jpg; sourceTree = "<group>"; };
-		6B1042D9229572C100A17F5C /* UFO_D_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_D_Normal.jpg; sourceTree = "<group>"; };
-		6B1042DC229572C200A17F5C /* UFO_E_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_E_Normal.jpg; sourceTree = "<group>"; };
-		6B1042DD229572C200A17F5C /* UFO_E_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_E_Diffuse.jpg; sourceTree = "<group>"; };
-		6B1042E0229572C200A17F5C /* UFO_F_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_F_Normal.jpg; sourceTree = "<group>"; };
-		6B1042E2229572C200A17F5C /* UFO_F_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_F_Diffuse.jpg; sourceTree = "<group>"; };
-		6B1042F2229574B500A17F5C /* UFO_B.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_B.dae; sourceTree = "<group>"; };
-		6B1042F42295759000A17F5C /* UFO_C.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_C.dae; sourceTree = "<group>"; };
-		6B1042F6229580B100A17F5C /* UFO_D.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_D.dae; sourceTree = "<group>"; };
-		6B1042F8229580C000A17F5C /* UFO_E.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_E.dae; sourceTree = "<group>"; };
-		6B1042FA229580CE00A17F5C /* UFO_F.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_F.dae; sourceTree = "<group>"; };
-		6B1042FC2295816200A17F5C /* UFO_A.dae */ = {isa = PBXFileReference; lastKnownFileType = text.xml.dae; path = UFO_A.dae; sourceTree = "<group>"; };
-		6B1042FE229588A000A17F5C /* UFO_Diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Diffuse.png; sourceTree = "<group>"; };
-		6B1042FF229588A000A17F5C /* UFO_Emission.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Emission.png; sourceTree = "<group>"; };
-		6B104300229588A000A17F5C /* UFO_Glossiness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Glossiness.png; sourceTree = "<group>"; };
-		6B104301229588A000A17F5C /* UFO_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Roughness.png; sourceTree = "<group>"; };
-		6B104302229588A000A17F5C /* UFO_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Normal.png; sourceTree = "<group>"; };
-		6B104303229588A000A17F5C /* UFO_Specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_Specular.png; sourceTree = "<group>"; };
-		6B10431022958C4700A17F5C /* UFO_Alpha.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_Alpha.dae; sourceTree = "<group>"; };
 		6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_basecolor.jpg; sourceTree = "<group>"; };
 		6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_metallic.jpg; sourceTree = "<group>"; };
 		6B89CCD52293C02E00E258AF /* FiredScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = FiredScene.scn; sourceTree = "<group>"; };
 		6B89CCD62293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_roughness.jpg; sourceTree = "<group>"; };
 		6B89CCD72293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_ambientOcclusion.jpg; sourceTree = "<group>"; };
 		6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_normal.jpg; sourceTree = "<group>"; };
-		6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Normal.jpg; sourceTree = "<group>"; };
-		6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_A_Diffuse.jpg; sourceTree = "<group>"; };
 		6B89CCDE2293C02E00E258AF /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		6B89CCDF2293C02E00E258AF /* FireExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireExplosion.scnp; sourceTree = "<group>"; };
 		6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = UFO_A.scnassets; sourceTree = "<group>"; };
@@ -137,96 +76,6 @@
 			path = music;
 			sourceTree = "<group>";
 		};
-		6B1042CF229572C000A17F5C /* UFO_C */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042D0229572C000A17F5C /* UFO_C_Normal.jpg */,
-				6B1042F42295759000A17F5C /* UFO_C.dae */,
-				6B1042D2229572C000A17F5C /* UFO_C_Diffuse.jpg */,
-			);
-			name = UFO_C;
-			path = ../UFO_C;
-			sourceTree = "<group>";
-		};
-		6B1042D3229572C100A17F5C /* UFO_B */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042D4229572C100A17F5C /* UFO_B_Diffuse.jpg */,
-				6B1042F2229574B500A17F5C /* UFO_B.dae */,
-				6B1042D6229572C100A17F5C /* UFO_B_Normal.jpg */,
-			);
-			name = UFO_B;
-			path = ../UFO_B;
-			sourceTree = "<group>";
-		};
-		6B1042D7229572C100A17F5C /* UFO_D */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042D8229572C100A17F5C /* UFO_D_Diffuse.jpg */,
-				6B1042F6229580B100A17F5C /* UFO_D.dae */,
-				6B1042D9229572C100A17F5C /* UFO_D_Normal.jpg */,
-			);
-			name = UFO_D;
-			path = ../UFO_D;
-			sourceTree = "<group>";
-		};
-		6B1042DB229572C200A17F5C /* UFO_E */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042DC229572C200A17F5C /* UFO_E_Normal.jpg */,
-				6B1042F8229580C000A17F5C /* UFO_E.dae */,
-				6B1042DD229572C200A17F5C /* UFO_E_Diffuse.jpg */,
-			);
-			name = UFO_E;
-			path = ../UFO_E;
-			sourceTree = "<group>";
-		};
-		6B1042DF229572C200A17F5C /* UFO_F */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042E0229572C200A17F5C /* UFO_F_Normal.jpg */,
-				6B1042FA229580CE00A17F5C /* UFO_F.dae */,
-				6B1042E2229572C200A17F5C /* UFO_F_Diffuse.jpg */,
-			);
-			name = UFO_F;
-			path = ../UFO_F;
-			sourceTree = "<group>";
-		};
-		6B1042FD2295887E00A17F5C /* UFO_Alpha */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042FE229588A000A17F5C /* UFO_Diffuse.png */,
-				6B1042FF229588A000A17F5C /* UFO_Emission.png */,
-				6B104300229588A000A17F5C /* UFO_Glossiness.png */,
-				6B104302229588A000A17F5C /* UFO_Normal.png */,
-				6B104301229588A000A17F5C /* UFO_Roughness.png */,
-				6B104303229588A000A17F5C /* UFO_Specular.png */,
-				6B003D802295907700A9741F /* Flying_Saucer_Diffuse.jpg */,
-				6B003D842295921D00A9741F /* Flying_Saucer_Color.jpg */,
-				6B003D7E2295907700A9741F /* Flying_Saucer_Emission.jpg */,
-				6B003D7F2295907700A9741F /* Flying_Saucer_Normal_OpenGL.jpg */,
-				6B003D86229593A900A9741F /* Flying_Saucer_Color_blue.jpg */,
-				6B003D88229594A500A9741F /* Flying_Saucer_Emission_blue.jpg */,
-				6B10431022958C4700A17F5C /* UFO_Alpha.dae */,
-			);
-			name = UFO_Alpha;
-			path = ../UFO_Alpha;
-			sourceTree = "<group>";
-		};
-		6B10431222958CB900A17F5C /* UFO */ = {
-			isa = PBXGroup;
-			children = (
-				6B1042FD2295887E00A17F5C /* UFO_Alpha */,
-				6B89CCD92293C02E00E258AF /* UFO_A */,
-				6B1042D3229572C100A17F5C /* UFO_B */,
-				6B1042CF229572C000A17F5C /* UFO_C */,
-				6B1042D7229572C100A17F5C /* UFO_D */,
-				6B1042DB229572C200A17F5C /* UFO_E */,
-				6B1042DF229572C200A17F5C /* UFO_F */,
-			);
-			path = UFO;
-			sourceTree = "<group>";
-		};
 		6B89CCD22293C02E00E258AF /* Torpedo */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,17 +87,6 @@
 				6B89CCD82293C02E00E258AF /* Metal_Galvanized_001_normal.jpg */,
 			);
 			path = Torpedo;
-			sourceTree = "<group>";
-		};
-		6B89CCD92293C02E00E258AF /* UFO_A */ = {
-			isa = PBXGroup;
-			children = (
-				6B89CCDA2293C02E00E258AF /* UFO_A_Normal.jpg */,
-				6B89CCDB2293C02E00E258AF /* UFO_A_Diffuse.jpg */,
-				6B1042FC2295816200A17F5C /* UFO_A.dae */,
-			);
-			name = UFO_A;
-			path = ../UFO_A;
 			sourceTree = "<group>";
 		};
 		6B89CCDD2293C02E00E258AF /* Explosion */ = {
@@ -292,7 +130,6 @@
 			children = (
 				6BC21E3E228AD87D00C2A627 /* Supporting Files */,
 				6B0200A822895545007DA53D /* music */,
-				6B10431222958CB900A17F5C /* UFO */,
 				6B89CCDD2293C02E00E258AF /* Explosion */,
 				6B89CCD22293C02E00E258AF /* Torpedo */,
 				9BC6873A2282D5A5005F2CBD /* art.scnassets */,
@@ -366,51 +203,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B89CCE22293C02E00E258AF /* FiredScene.scn in Resources */,
-				6B89CCE62293C02E00E258AF /* UFO_A_Normal.jpg in Resources */,
 				6B89CCE52293C02E00E258AF /* Metal_Galvanized_001_normal.jpg in Resources */,
-				6B104307229588A000A17F5C /* UFO_Roughness.png in Resources */,
-				6B1042EA229572C200A17F5C /* UFO_D_Normal.jpg in Resources */,
-				6B1042E8229572C200A17F5C /* UFO_B_Normal.jpg in Resources */,
 				6B89CCE12293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg in Resources */,
-				6B104304229588A000A17F5C /* UFO_Diffuse.png in Resources */,
 				6B8C57E12292B4C30080ED1E /* Explosion.scnassets in Resources */,
 				6B89CCE42293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */,
-				6B104306229588A000A17F5C /* UFO_Glossiness.png in Resources */,
 				6B89CCE92293C02E00E258AF /* spark.png in Resources */,
 				9BC6873B2282D5A5005F2CBD /* art.scnassets in Resources */,
-				6B1042EF229572C200A17F5C /* UFO_F_Normal.jpg in Resources */,
-				6B003D852295921E00A9741F /* Flying_Saucer_Color.jpg in Resources */,
-				6B003D812295907700A9741F /* Flying_Saucer_Emission.jpg in Resources */,
 				6B8C57BD2292B2930080ED1E /* Torpedo.scnassets in Resources */,
-				6B003D832295907700A9741F /* Flying_Saucer_Diffuse.jpg in Resources */,
-				6B1042E5229572C200A17F5C /* UFO_C_Diffuse.jpg in Resources */,
-				6B003D87229593A900A9741F /* Flying_Saucer_Color_blue.jpg in Resources */,
-				6B1042F52295759000A17F5C /* UFO_C.dae in Resources */,
-				6B1042F9229580C000A17F5C /* UFO_E.dae in Resources */,
-				6B10431122958C4700A17F5C /* UFO_Alpha.dae in Resources */,
 				9BC687452282D5A9005F2CBD /* LaunchScreen.storyboard in Resources */,
 				9BC687422282D5A9005F2CBD /* Assets.xcassets in Resources */,
-				6B89CCE72293C02E00E258AF /* UFO_A_Diffuse.jpg in Resources */,
-				6B1042E9229572C200A17F5C /* UFO_D_Diffuse.jpg in Resources */,
 				6B0200AB22895559007DA53D /* explosion.mp3 in Resources */,
-				6B1042E6229572C200A17F5C /* UFO_B_Diffuse.jpg in Resources */,
-				6B1042F1229572C200A17F5C /* UFO_F_Diffuse.jpg in Resources */,
 				9BC687402282D5A5005F2CBD /* Main.storyboard in Resources */,
 				6B89CCEA2293C02E00E258AF /* FireExplosion.scnp in Resources */,
-				6B104309229588A000A17F5C /* UFO_Specular.png in Resources */,
 				6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */,
-				6B1042E3229572C200A17F5C /* UFO_C_Normal.jpg in Resources */,
 				6B8C57BB2292B24A0080ED1E /* UFO_A.scnassets in Resources */,
-				6B003D822295907700A9741F /* Flying_Saucer_Normal_OpenGL.jpg in Resources */,
-				6B1042EC229572C200A17F5C /* UFO_E_Normal.jpg in Resources */,
-				6B003D89229594A500A9741F /* Flying_Saucer_Emission_blue.jpg in Resources */,
-				6B1042F3229574B500A17F5C /* UFO_B.dae in Resources */,
-				6B1042ED229572C200A17F5C /* UFO_E_Diffuse.jpg in Resources */,
-				6B104305229588A000A17F5C /* UFO_Emission.png in Resources */,
-				6B104308229588A000A17F5C /* UFO_Normal.png in Resources */,
-				6B1042F7229580B100A17F5C /* UFO_D.dae in Resources */,
 				6B89CCE32293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg in Resources */,
-				6B1042FB229580CE00A17F5C /* UFO_F.dae in Resources */,
 				6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
