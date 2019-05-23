@@ -14,6 +14,8 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     // SpaceShipNode
     var spaceShipNode : SCNNode?
     
+    var torpedoCollidedSpaceship : Bool = false
+    
     // TorpedoNode
     var torpedoNode  : SCNNode?
     
@@ -26,14 +28,14 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spaceShipNode = createSpaceShipNode()
+  //      spaceShipNode = createSpaceShipNode()
         
-        //  torpedoNode   = createTorpedoNode()
+       //   torpedoNode   = createTorpedoNode()
         
         //   explosionNode = createExplosionNode()
         
         
-        if let spaceShipNode = spaceShipNode {
+        if let spaceShipNode = createSpaceShipNode() {
             
             sceneView.scene.rootNode.addChildNode(spaceShipNode)
             
@@ -43,7 +45,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
             //Setting that VC I am delegate for physicContact
             sceneView.scene.physicsWorld.contactDelegate = self
             
-                sceneView.debugOptions = .showPhysicsShapes
+                //sceneView.debugOptions = .showPhysicsShapes
             
             
             sceneView.delegate = self
@@ -58,7 +60,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         button.frame = CGRect(x: 70, y: 120, width: 50, height: 50)
         button.addTarget(self, action: #selector(addObject(sender:)), for: .touchUpInside)
-   //     view.addSubview(button)
+       // view.addSubview(button)
         
         let button2 = UIButton()
         button2.setTitle("remove", for: .normal)
@@ -74,8 +76,45 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     var a : Float = 0
     @objc func addObject(sender:UIButton){
         print("hi")
-        spaceShipNode?.position.x = a + 0.5
-        sceneView.scene.rootNode.addChildNode((spaceShipNode?.clone())!)
+//        spaceShipNode?.position.x = a + 0.5
+//        sceneView.scene.rootNode.addChildNode((spaceShipNode?.clone())!)
+        shootCube()
+    }
+    
+    
+    //Trying Extra Node contact 
+    func shootCube(){
+        
+        let node = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.05))
+        
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        
+        node.position = SCNVector3(0,0,-0.2)
+        
+       // node.runAction(SCNAction.move(to: (spaceShipNode?.presentation.position)!, duration: 5))
+        
+        node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        
+        node.physicsBody?.categoryBitMask = BitMask.brick
+        
+        node.physicsBody?.collisionBitMask = BitMask.spaceShipCategory
+        
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        print(spaceShipNode?.position)
+        node.physicsBody?.applyForce((spaceShipNode?.presentation.position)!, asImpulse: true)
+        
+        node.runAction(SCNAction.wait(duration: 5)){
+            [unowned node] in
+            node.removeFromParentNode()
+        }
+        
+        
+        
+        
+        
+        
+        
     }
     
     @objc func removeObject(sender:UIButton){
@@ -113,6 +152,16 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         else if(contact.nodeA.physicsBody?.categoryBitMask == BitMask.torpedoCategory && contact.nodeB.physicsBody?.categoryBitMask == BitMask.spaceShipCategory){
             
             torpedoDidCollideWithAlien(torpedoNode: contact.nodeA, spaceShipNode: contact.nodeB, explosionNode: createExplosionNode())
+        }
+        
+        else if(contact.nodeA.physicsBody?.categoryBitMask == BitMask.brick && contact.nodeB.physicsBody?.categoryBitMask == BitMask.spaceShipCategory){
+            
+            print("Brick hits space")
+        }
+        
+        else if(contact.nodeA.physicsBody?.categoryBitMask == BitMask.spaceShipCategory && contact.nodeB.physicsBody?.categoryBitMask == BitMask.brick){
+            
+            print("Space hits Brick")
         }
         
     }
