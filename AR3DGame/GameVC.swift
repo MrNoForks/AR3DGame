@@ -28,14 +28,14 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-  //      spaceShipNode = createSpaceShipNode()
+        spaceShipNode = createSpaceShipNode()
         
        //   torpedoNode   = createTorpedoNode()
         
         //   explosionNode = createExplosionNode()
         
         
-        if let spaceShipNode = createSpaceShipNode() {
+        if let spaceShipNode = spaceShipNode?.clone() {
             
             sceneView.scene.rootNode.addChildNode(spaceShipNode)
             

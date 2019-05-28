@@ -147,7 +147,10 @@ extension GameVC{
         //  actionArray.append(SCNAction.move(to: SCNVector3(x: newPosInWorldSpace.x, y: newPosInWorldSpace.y, z: newPosInWorldSpace.z), duration: 3))
         
         //Moving torpedo in from current location to specified location
-        actionArray.append(SCNAction.wait(duration: 3))
+        //actionArray.append(SCNAction.wait(duration: 3))
+        actionArray.append(SCNAction.fadeOpacity(to: 0, duration: 2))
+        
+        actionArray.append(SCNAction.wait(duration: 2))
         
         //Removing torpedo from scene
         actionArray.append(SCNAction.removeFromParentNode())
@@ -172,30 +175,25 @@ extension GameVC{
         
         
         
-        // For playing audio of explosion
-        sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
-        
-        explosionNode.position = spaceShipNode.presentation.position
-        
-        self.sceneView.scene.rootNode.addChildNode(explosionNode)
-        
-        
-        
-        //Removing previous animation on node
-        torpedoNode.removeAllActions()
-        
-        //begin transaction of animation mention properties to be animated in middle of begin and commit
-        SCNTransaction.begin()
 
-        //Duration of animation in seconds
-        SCNTransaction.animationDuration = 2
         
-        // setting transparency of node
-        torpedoNode.opacity = 0
-
-        //Commiting animation
-        SCNTransaction.commit()
         
+        
+//        //Removing previous animation on node
+//        torpedoNode.removeAllActions()
+//
+//        //begin transaction of animation mention properties to be animated in middle of begin and commit
+//        SCNTransaction.begin()
+//
+//        //Duration of animation in seconds
+//        SCNTransaction.animationDuration = 2
+//
+//        // setting transparency of node
+//        torpedoNode.opacity = 0
+//
+//        //Commiting animation
+//        SCNTransaction.commit()
+//
  
         //Creating array of SCNAction animation
         var spaceShipNodeActionArray = [SCNAction]()
@@ -204,34 +202,42 @@ extension GameVC{
         spaceShipNodeActionArray.append(SCNAction.fadeOut(duration: 2))
         
         //Removing spaceShip Node
-        spaceShipNodeActionArray.append(SCNAction.removeFromParentNode())
+      //  spaceShipNodeActionArray.append(SCNAction.removeFromParentNode())
         
         spaceShipNode.runAction(SCNAction.sequence(spaceShipNodeActionArray)){
             
-            [weak self ] in
             
-            //Setting physicsBody to nil to prevent it from agaain getting hit by torpedo
-           spaceShipNode.physicsBody = nil
-          
-            torpedoNode.removeFromParentNode()
+            
+            // For playing audio of explosion
+            self.sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "explosion.mp3")!, waitForCompletion: false))
+            
+            explosionNode.position = spaceShipNode.presentation.position
+            
+            self.sceneView.scene.rootNode.addChildNode(explosionNode)
+            
+            spaceShipNode.removeFromParentNode()
+            
+            //ExplosionAnimation array
+            var explosionNodeActionArray = [SCNAction]()
+            
+            //Wait for 0.7 seconds
+            explosionNodeActionArray.append(SCNAction.wait(duration: 0.7))
+            
+            // remove once wait is done
+            explosionNodeActionArray.append(SCNAction.removeFromParentNode())
+            
+            //Run all animation on explosionNode
+            explosionNode.runAction(SCNAction.sequence(explosionNodeActionArray)){
+           
             
             //Variable to check if torpedo collided to with spaceship setting it true didRender
-            self?.torpedoCollidedSpaceship = true
+                self.torpedoCollidedSpaceship = true
+            }
             
         }
         
 
-        //ExplosionAnimation array
-        var explosionNodeActionArray = [SCNAction]()
-        
-        //Wait for 0.7 seconds
-        explosionNodeActionArray.append(SCNAction.wait(duration: 0.7))
-        
-        // remove once wait is done
-        explosionNodeActionArray.append(SCNAction.removeFromParentNode())
-        
-        //Run all animation on explosionNode
-        explosionNode.runAction(SCNAction.sequence(explosionNodeActionArray))
+
         
         
 
@@ -247,14 +253,14 @@ extension GameVC{
         //If torpedoCollidedSpaceship
         if torpedoCollidedSpaceship{
             
-            print(self.spaceShipNode?.position)
+          //  print(self.spaceShipNode?.position)
             
             //Random number from -1.5 to 1.5
             let xPos = randomPosition(lower: -1.5, upper: 1.5)
             
-            self.spaceShipNode = createSpaceShipNode()
+            //self.spaceShipNode = createSpaceShipNode()
             
-            if let spaceShipNode = self.spaceShipNode{
+            if let spaceShipNode = spaceShipNode?.clone(){
                 
                 spaceShipNode.position.x = xPos
                 
