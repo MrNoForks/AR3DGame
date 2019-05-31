@@ -6,6 +6,8 @@
 //  Copyright © 2019 Boppo. All rights reserved.
 //
 
+//There is error in debug when 2 particle System comes it produces objc_weak_error error
+//https://stackoverflow.com/questions/53568934/scnparticlesystem-weak-variable-at-addressx-holds-addressys
 
 import ARKit
 
@@ -81,7 +83,18 @@ extension GameVC{
             
         }
         
+        //If node doesnt have child we use its geometry else we add all childNodes geomtry to create a more accurate body
+        
+        if node.childNodes.isEmpty{
+            
+         node.physicsBody = SCNPhysicsBody(type: type, shape: nil)
+            
+        }
+        else{
+            
         node.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(shapes: physicsShapes,transforms: [NSValue(scnMatrix4: SCNMatrix4(float4x4(0.8)))] ))
+            
+        }
         
         //For bounding Box
         //    node.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(node: node, options: [.type: SCNPhysicsShape.ShapeType.boundingBox]))
