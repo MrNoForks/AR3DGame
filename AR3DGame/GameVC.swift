@@ -62,7 +62,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         button.frame = CGRect(x: 70, y: 120, width: 50, height: 50)
         button.addTarget(self, action: #selector(addObject(sender:)), for: .touchUpInside)
-       // view.addSubview(button)
+        view.addSubview(button)
         
         let button2 = UIButton()
         button2.setTitle("remove", for: .normal)
@@ -103,7 +103,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         
         
         sceneView.scene.rootNode.addChildNode(node)
-        print(spaceShipNode?.position)
+        print(spaceShipNode?.presentation.position)
         node.physicsBody?.applyForce((spaceShipNode?.presentation.position)!, asImpulse: true)
         
         node.runAction(SCNAction.wait(duration: 5)){

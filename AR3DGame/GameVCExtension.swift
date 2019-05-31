@@ -273,9 +273,11 @@ extension GameVC{
             
             //self.spaceShipNode = createSpaceShipNode()
             
+            spaceShipNode?.position.x = xPos
+            
             if let spaceShipNode = spaceShipNode?.clone(){
                 
-                spaceShipNode.position.x = xPos
+                
                 
                 spaceShipNode.opacity = 0
                 
