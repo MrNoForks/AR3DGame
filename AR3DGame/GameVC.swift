@@ -22,6 +22,8 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     // ExplosionNode
     //   var explosionNode : SCNNode?
     
+    var alertVisible : Bool = false
+    
     @IBOutlet weak var sceneView: ARSCNView!
     
 
@@ -196,9 +198,11 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
             //  print(camera.simdTransform.columns.3 - node!.simdTransform.columns.3)
             // label2.text = " distance is \(length(camera.simdTransform.columns.3 - node!.simdTransform.columns.3))"
             DispatchQueue.main.async {
-
                 
-                if distance > 2 {
+                if distance > 2 && !self.alertVisible{
+                    
+                    self.alertVisible = true
+                    
                     let alert = UIAlertController(title: "Distance", message: "Try moving back to where you initiated your game from", preferredStyle: .alert)
                     
                     
@@ -214,9 +218,11 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
                     uiImageAlertAction.setValue(reSizedImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "Image")
                     
                     alert.addAction(uiImageAlertAction)
+                   
                     
-                    
-                    let okAlert = UIAlertAction(title: "Ok", style: .default)
+                    let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        self.alertVisible = false
+                    })
                     
                     
                     alert.addAction(okAlert)
