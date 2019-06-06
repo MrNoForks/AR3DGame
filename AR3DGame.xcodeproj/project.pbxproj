@@ -52,6 +52,8 @@
 		6BB3878F2296E57A0019D299 /* UFO_B_Diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BB387712296E57A0019D299 /* UFO_B_Diffuse.jpg */; };
 		6BB387902296E57A0019D299 /* UFO_B.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6BB387722296E57A0019D299 /* UFO_B.dae */; };
 		6BB387912296E57A0019D299 /* UFO_B_Normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BB387732296E57A0019D299 /* UFO_B_Normal.jpg */; };
+		6BD8AE1522A9327F006FC5C8 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD8AE1322A9327F006FC5C8 /* smoke.png */; };
+		6BD8AE1622A9327F006FC5C8 /* smkey.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6BD8AE1422A9327F006FC5C8 /* smkey.scnp */; };
 		9B2D9F472282F079003C2353 /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D9F432282F079003C2353 /* ModelLoader.swift */; };
 		9BC687392282D5A5005F2CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC687382282D5A5005F2CBD /* AppDelegate.swift */; };
 		9BC6873B2282D5A5005F2CBD /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6873A2282D5A5005F2CBD /* art.scnassets */; };
@@ -106,6 +108,8 @@
 		6BB387712296E57A0019D299 /* UFO_B_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_B_Diffuse.jpg; sourceTree = "<group>"; };
 		6BB387722296E57A0019D299 /* UFO_B.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO_B.dae; sourceTree = "<group>"; };
 		6BB387732296E57A0019D299 /* UFO_B_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UFO_B_Normal.jpg; sourceTree = "<group>"; };
+		6BD8AE1322A9327F006FC5C8 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
+		6BD8AE1422A9327F006FC5C8 /* smkey.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = smkey.scnp; sourceTree = "<group>"; };
 		9B2D9F432282F079003C2353 /* ModelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLoader.swift; sourceTree = "<group>"; };
 		9BC687352282D5A5005F2CBD /* AR3DGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR3DGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC687382282D5A5005F2CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -262,6 +266,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6BD8AE1222A9326B006FC5C8 /* Smoke */ = {
+			isa = PBXGroup;
+			children = (
+				6BD8AE1322A9327F006FC5C8 /* smoke.png */,
+				6BD8AE1422A9327F006FC5C8 /* smkey.scnp */,
+			);
+			path = Smoke;
+			sourceTree = "<group>";
+		};
 		9BC6872C2282D5A5005F2CBD = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +299,7 @@
 				6B0200A822895545007DA53D /* music */,
 				6B89CCDD2293C02E00E258AF /* Explosion */,
 				6B89CCD22293C02E00E258AF /* Torpedo */,
+				6BD8AE1222A9326B006FC5C8 /* Smoke */,
 				9BC6873A2282D5A5005F2CBD /* art.scnassets */,
 				6B8C57BA2292B24A0080ED1E /* UFO_A.scnassets */,
 				6B8C57C02292B2CF0080ED1E /* Explosion.scnassets */,
@@ -368,6 +382,7 @@
 				6BB387762296E57A0019D299 /* UFO_Normal.png in Resources */,
 				6BB3878D2296E57A0019D299 /* UFO_E_Diffuse.jpg in Resources */,
 				6BB387802296E57A0019D299 /* Flying_Saucer_Diffuse.jpg in Resources */,
+				6BD8AE1622A9327F006FC5C8 /* smkey.scnp in Resources */,
 				6BB3877C2296E57A0019D299 /* UFO_Alpha.dae in Resources */,
 				6B8C57E12292B4C30080ED1E /* Explosion.scnassets in Resources */,
 				6B89CCE42293C02E00E258AF /* Metal_Galvanized_001_ambientOcclusion.jpg in Resources */,
@@ -399,6 +414,7 @@
 				6B89CCE32293C02E00E258AF /* Metal_Galvanized_001_roughness.jpg in Resources */,
 				6BB387772296E57A0019D299 /* Flying_Saucer_Color_blue.jpg in Resources */,
 				6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */,
+				6BD8AE1522A9327F006FC5C8 /* smoke.png in Resources */,
 				6BB3877E2296E57A0019D299 /* Flying_Saucer_Normal_OpenGL.jpg in Resources */,
 				6BB387752296E57A0019D299 /* UFO_Emission.png in Resources */,
 				6BB3877D2296E57A0019D299 /* UFO_Diffuse.png in Resources */,

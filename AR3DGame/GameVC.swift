@@ -22,6 +22,14 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     // ExplosionNode
     //   var explosionNode : SCNNode?
     
+    private var smokeyNode : SCNNode = {
+        let particleNode = SCNNode()
+        particleNode.addParticleSystem(SCNParticleSystem(named: "smkey", inDirectory: nil)!)
+        particleNode.position = SCNVector3(x: -1, y: -0.5, z: 0)
+        return particleNode
+    }()
+    
+    
     var alertVisible : Bool = false
     
     @IBOutlet weak var sceneView: ARSCNView!
@@ -30,28 +38,19 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         spaceShipNode = createSpaceShipNode()
+
+        //Setting  gravity to 0 from default(which is 9.8)
+        sceneView.scene.physicsWorld.gravity = SCNVector3Zero
         
-       //   torpedoNode   = createTorpedoNode()
+        //Setting that VC I am delegate for physicContact
+        sceneView.scene.physicsWorld.contactDelegate = self
         
-        //   explosionNode = createExplosionNode()
+        //sceneView.debugOptions = .showPhysicsShapes
         
         
-        if let spaceShipNode = spaceShipNode?.clone() {
-            
-            sceneView.scene.rootNode.addChildNode(spaceShipNode)
-            
-            //Setting  gravity to 0 from default(which is 9.8)
-            sceneView.scene.physicsWorld.gravity = SCNVector3Zero
-            
-            //Setting that VC I am delegate for physicContact
-            sceneView.scene.physicsWorld.contactDelegate = self
-            
-                //sceneView.debugOptions = .showPhysicsShapes
-            
-            
-            sceneView.delegate = self
-        }
+        sceneView.delegate = self
         
         sceneView.showsStatistics = true
         
@@ -62,7 +61,8 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         button.frame = CGRect(x: 70, y: 120, width: 50, height: 50)
         button.addTarget(self, action: #selector(addObject(sender:)), for: .touchUpInside)
-        view.addSubview(button)
+        //  2 collision
+        //     view.addSubview(button)
         
         let button2 = UIButton()
         button2.setTitle("remove", for: .normal)
@@ -134,7 +134,14 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         super.viewWillAppear(animated)
         
         let configuration = ARWorldTrackingConfiguration()
-        sceneView.session.run(configuration)
+        
+        guard let trackedImages = ARReferenceImage.referenceImages(inGroupNamed: "ARPhotos", bundle: nil) else {print("No images"); return}
+        
+        configuration.detectionImages = trackedImages
+        
+        configuration.maximumNumberOfTrackedImages = 0
+        
+        sceneView.session.run(configuration, options: [.resetTracking,.removeExistingAnchors])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -248,5 +255,61 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+}
+
+
+extension GameVC {
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        if let imageAnchor = anchor as? ARImageAnchor{
+            
+            
+            sceneView.scene.rootNode.addChildNode(smokeyNode)
+            
+            var actionArray : [SCNAction] = []
+            
+            actionArray.append( SCNAction.wait(duration: 5))
+            
+            actionArray.append( SCNAction.removeFromParentNode())
+            
+            smokeyNode.runAction(SCNAction.sequence(actionArray))
+            
+            
+            
+            if let spaceShipNode = self.spaceShipNode?.clone() {
+                
+                
+                spaceShipNode.position = SCNVector3(x: imageAnchor.transform.columns.3.x, y: imageAnchor.transform.columns.3.y, z: imageAnchor.transform.columns.3.z  )
+                
+                
+                spaceShipNode.scale = SCNVector3(0, 0, 0)
+                
+                spaceShipNode.runAction(SCNAction.scale(to: 2, duration: 5))
+                
+                
+                self.sceneView.scene.rootNode.addChildNode(spaceShipNode)
+                print("found model")
+                
+            }
+            
+            //    virtualModelNode = ModelManipulator.shared.getNodeFromDae(modelName: imageAnchor.referenceImage.name,scale: 0.05,introAnimation: true,withDuration: 2)
+         //   ModelManipulator.shared.removeAllNodes(node: virtualModelNode)
+            
+            //sceneView.scene.rootNode.childNodes.map{$0.removeFromParentNode()}
+            //  ModelManipulator.shared.removeAllNodes(node: sceneView.scene.rootNode)
+            
+
+            
+            
+            
+            //   torpedoNode   = createTorpedoNode()
+            
+            //   explosionNode = createExplosionNode()
+            
+            
+ 
+                    }
+        return nil
+
     }
 }

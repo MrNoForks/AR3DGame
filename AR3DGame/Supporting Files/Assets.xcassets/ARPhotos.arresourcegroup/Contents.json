@@ -1,0 +1,14 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "Alpha_UFO.arreferenceimage"
+    },
+    {
+      "filename" : "UFO_A.arreferenceimage"
+    }
+  ]
+}
