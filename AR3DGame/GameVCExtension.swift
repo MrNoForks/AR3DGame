@@ -118,8 +118,8 @@ extension GameVC{
         return Float(arc4random())/Float(UInt32.max) * (lower - upper) + upper
     }
     
-    //Fire torpedo
-    func fireTorpedo(){
+    //MARK: - Fire torpedo
+    func fireTorpedo(at location : SCNVector3){
         
         torpedoNode = createTorpedoNode()
         
@@ -131,25 +131,27 @@ extension GameVC{
         //Adding sounds for firing of torpedo
         sceneView.scene.rootNode.runAction(SCNAction.playAudio(SCNAudioSource(named: "torpedo.mp3")!, waitForCompletion: false))
         
-        //trying to get pointView i.e. camera position
-        guard let pointOfView = sceneView.pointOfView else {return}
+//        //trying to get pointView i.e. camera position
+//        guard let pointOfView = sceneView.pointOfView else {return}
+//
+//        //Converting pointView properties to 4x4 matrix for manipulating
+//        //rotation,position,scale,(world or local) position OpenGL 4x4 matrix
+//        let cameraTransform = pointOfView.simdTransform
+//        //For where to place In CameraView in worldspace i.e. location to travel for torpedo -2 in z dimension
+//        let newPos = simd_make_float4(0,0,-2,1)
+//
+//        // Now multiplying cameraTransform  and newPos to place object with respect to camera
+//        let newPosInWorldSpace = simd_mul(cameraTransform,newPos)
         
-        //Converting pointView properties to 4x4 matrix for manipulating
-        //rotation,position,scale,(world or local) position OpenGL 4x4 matrix
-        let cameraTransform = pointOfView.simdTransform
-        
-        //For where to place In CameraView in worldspace i.e. location to travel for torpedo -2 in z dimension
-        let newPos = simd_make_float4(0,0,-2,1)
-        
-        // Now multiplying cameraTransform  and newPos to place object with respect to camera
-        let newPosInWorldSpace = simd_mul(cameraTransform,newPos)
-        
-        torpedo.position = pointOfView.position
+        torpedo.position = getCameraPosition()
         
         // Adding torrpedoNode
         sceneView.scene.rootNode.addChildNode(torpedo)
         
-        torpedo.physicsBody?.applyForce(SCNVector3(x: newPosInWorldSpace.x, y: newPosInWorldSpace.y, z: newPosInWorldSpace.z), asImpulse: true)
+        
+
+        
+        torpedo.physicsBody?.applyForce(location, asImpulse: true)
         
         
         
@@ -259,6 +261,21 @@ extension GameVC{
         
     }
     
+    //MARK: -  Get Camera Direction
+    func getDirection(for point: CGPoint, in view: SCNView) -> SCNVector3 {
+        let farPoint  = view.unprojectPoint(SCNVector3(Float(point.x), Float(point.y), 1))
+        let nearPoint = view.unprojectPoint(SCNVector3(Float(point.x), Float(point.y), 0))
+        
+        return SCNVector3(farPoint.x - nearPoint.x, farPoint.y - nearPoint.y, farPoint.z - nearPoint.z)
+    }
+    
+    //MARK: -  Get Camera Position
+    func getCameraPosition() -> SCNVector3 {
+   //     let transform = sceneView.session.currentFrame?.camera.transform
+      //  let pos = MDLTransform(matrix:transform!)
+     //   return SCNVector3(pos.translation.x, pos.translation.y, pos.translation.z)
+        return sceneView.pointOfView!.position
+    }
     
     
     //MARK: - Render Functions
@@ -346,6 +363,7 @@ extension GameVC{
         }
     }
     
+    
     // Triggered when a anchor is detected
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         if let imageAnchor = anchor as? ARImageAnchor{
@@ -378,23 +396,7 @@ extension GameVC{
                 print("found model")
                 
             }
-            
-            //    virtualModelNode = ModelManipulator.shared.getNodeFromDae(modelName: imageAnchor.referenceImage.name,scale: 0.05,introAnimation: true,withDuration: 2)
-            //   ModelManipulator.shared.removeAllNodes(node: virtualModelNode)
-            
-            //sceneView.scene.rootNode.childNodes.map{$0.removeFromParentNode()}
-            //  ModelManipulator.shared.removeAllNodes(node: sceneView.scene.rootNode)
-            
-            
-            
-            
-            
-            //   torpedoNode   = createTorpedoNode()
-            
-            //   explosionNode = createExplosionNode()
-            
-            
-            
+          
         }
         return nil
         
@@ -412,5 +414,16 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+}
+
+extension SCNVector3 {
+    /// Returns the length of the vector
+    var length: Float {
+        return sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
+    }
+    var normalized: SCNVector3 {
+        let length = self.length
+        return SCNVector3(self.x/length, self.y/length, self.z/length)
     }
 }

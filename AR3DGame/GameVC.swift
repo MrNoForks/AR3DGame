@@ -147,10 +147,18 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     // Triggered when user taps screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        fireTorpedo()
-        
-        print(sceneView.scene.rootNode.childNodes.count)
-        
+        if let firstTouch = touches.first{
+            
+            let pos = getCameraPosition()
+            
+            let dir = getDirection(for: firstTouch.location(in: sceneView), in: sceneView).normalized
+            
+            fireTorpedo(at : SCNVector3(pos.x + dir.x, pos.y + dir.y, pos.z + dir.z))
+            
+            print(sceneView.scene.rootNode.childNodes.count)
+            
+        }
+
     }
     
 }
