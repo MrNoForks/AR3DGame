@@ -22,7 +22,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     // ExplosionNode
     //   var explosionNode : SCNNode?
     
-    private var smokeyNode : SCNNode = {
+     var smokeyNode : SCNNode = {
         let particleNode = SCNNode()
         particleNode.addParticleSystem(SCNParticleSystem(named: "smkey", inDirectory: nil)!)
         particleNode.position = SCNVector3(x: -1, y: -0.5, z: 0)
@@ -82,43 +82,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
 //        sceneView.scene.rootNode.addChildNode((spaceShipNode?.clone())!)
         shootCube()
     }
-    
-    
-    //Trying Extra Node contact 
-    func shootCube(){
-        
-        let node = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.05))
-        
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        
-        node.position = SCNVector3(0,0,-0.2)
-        
-       // node.runAction(SCNAction.move(to: (spaceShipNode?.presentation.position)!, duration: 5))
-        
-        node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-        
-        node.physicsBody?.categoryBitMask = BitMask.brick
-        
-        node.physicsBody?.collisionBitMask = BitMask.spaceShipCategory
-        
-        
-        sceneView.scene.rootNode.addChildNode(node)
-        print(spaceShipNode?.presentation.position)
-        node.physicsBody?.applyForce((spaceShipNode?.presentation.position)!, asImpulse: true)
-        
-        node.runAction(SCNAction.wait(duration: 5)){
-            [unowned node] in
-            node.removeFromParentNode()
-        }
-        
-        
-        
-        
-        
-        
-        
-    }
-    
+
     @objc func removeObject(sender:UIButton){
         print("hi")
         spaceShipNode?.position.x = a + 0.5
@@ -129,7 +93,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     }
     
     
-    
+    //Configuring Setting of AR
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -178,138 +142,15 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     //    override var prefersStatusBarHidden: Bool{
     //        return false
     //    }
+    
+    
+    // Triggered when user taps screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         fireTorpedo()
         
         print(sceneView.scene.rootNode.childNodes.count)
         
-        
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if let camera = sceneView.pointOfView{
-            
-            let distance = length( camera.simdTransform.columns.3 - sceneView.scene.rootNode.simdTransform.columns.3)
-            //  print(camera.simdTransform.columns.3 - node!.simdTransform.columns.3)
-            // label2.text = " distance is \(length(camera.simdTransform.columns.3 - node!.simdTransform.columns.3))"
-            DispatchQueue.main.async {
-                
-                if distance > 2 && !self.alertVisible{
-                    
-                    self.alertVisible = true
-                    
-                    let alert = UIAlertController(title: "Distance", message: "Try moving back to where you initiated your game from", preferredStyle: .alert)
-                    
-                    
-                    let uiImageAlertAction = UIAlertAction(title: "", style: .default)
-                    
-                    let image = #imageLiteral(resourceName: "ARWarning.jpg")
-                    
-                    let maxsize = CGSize(width: 245, height: 300)
-                    
-                    let scaleSize = CGSize(width: 245, height: 245/image.size.width*image.size.height)
-                    let reSizedImage = image.resize(with: scaleSize)
-                    
-                    uiImageAlertAction.setValue(reSizedImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "Image")
-                    
-                    alert.addAction(uiImageAlertAction)
-                   
-                    
-                    let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                        self.alertVisible = false
-                    })
-                    
-                    
-                    alert.addAction(okAlert)
-                    
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-            
-            
-        }
-    }
-    
-    
-}
-
-extension UIImage {
-    
-    func resize(with size: CGSize) -> UIImage? {
-        // size has to be integer, otherwise it could get white lines
-        // let size = CGSize(width: floor(self.size.width * scale), height: floor(self.size.height * scale))
-        UIGraphicsBeginImageContext(size)
-        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-}
-
-
-extension GameVC {
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        if let imageAnchor = anchor as? ARImageAnchor{
-            
-            
-            sceneView.scene.rootNode.addChildNode(smokeyNode)
-            
-            var actionArray : [SCNAction] = []
-            
-            actionArray.append( SCNAction.wait(duration: 5))
-            
-            actionArray.append( SCNAction.removeFromParentNode())
-            
-            smokeyNode.runAction(SCNAction.sequence(actionArray))
-            
-            
-            
-            if let spaceShipNode = self.spaceShipNode?.clone() {
-                
-                
-                spaceShipNode.position = SCNVector3(x: imageAnchor.transform.columns.3.x, y: imageAnchor.transform.columns.3.y, z: imageAnchor.transform.columns.3.z  )
-                
-                
-                spaceShipNode.scale = SCNVector3(0, 0, 0)
-                
-                spaceShipNode.runAction(SCNAction.scale(to: 2, duration: 5))
-                
-                
-                self.sceneView.scene.rootNode.addChildNode(spaceShipNode)
-                print("found model")
-                
-            }
-            
-            //    virtualModelNode = ModelManipulator.shared.getNodeFromDae(modelName: imageAnchor.referenceImage.name,scale: 0.05,introAnimation: true,withDuration: 2)
-         //   ModelManipulator.shared.removeAllNodes(node: virtualModelNode)
-            
-            //sceneView.scene.rootNode.childNodes.map{$0.removeFromParentNode()}
-            //  ModelManipulator.shared.removeAllNodes(node: sceneView.scene.rootNode)
-            
-
-            
-            
-            
-            //   torpedoNode   = createTorpedoNode()
-            
-            //   explosionNode = createExplosionNode()
-            
-            
- 
-                    }
-        return nil
-
-    }
 }

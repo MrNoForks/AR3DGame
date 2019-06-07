@@ -8,7 +8,7 @@
 
 //There is error in debug when 2 particle System comes it produces objc_weak_error error
 //https://stackoverflow.com/questions/53568934/scnparticlesystem-weak-variable-at-addressx-holds-addressys
-
+//https://stackoverflow.com/questions/45294324/how-do-you-get-the-point-in-arkit
 import ARKit
 
 
@@ -184,30 +184,8 @@ extension GameVC{
         
         
         //Checking if nodes ain't empty else return to avoid exceptions
-        guard let torpedoNode = torpedoNode ,let spaceShipNode = spaceShipNode , let explosionNode = explosionNode else{return}
-        
-        
-        
+        guard let _ = torpedoNode ,let spaceShipNode = spaceShipNode , let explosionNode = explosionNode else{return}
 
-        
-        
-        
-//        //Removing previous animation on node
-//        torpedoNode.removeAllActions()
-//
-//        //begin transaction of animation mention properties to be animated in middle of begin and commit
-//        SCNTransaction.begin()
-//
-//        //Duration of animation in seconds
-//        SCNTransaction.animationDuration = 2
-//
-//        // setting transparency of node
-//        torpedoNode.opacity = 0
-//
-//        //Commiting animation
-//        SCNTransaction.commit()
-//
- 
         //Creating array of SCNAction animation
         var spaceShipNodeActionArray = [SCNAction]()
         
@@ -248,17 +226,42 @@ extension GameVC{
             }
             
         }
-        
-
-
-        
-        
-
-        
-        
-        
+   
         
     }
+    
+    //Trying Extra Node contact
+    func shootCube(){
+        
+        let node = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.05))
+        
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        
+        node.position = SCNVector3(0,0,-0.2)
+        
+        // node.runAction(SCNAction.move(to: (spaceShipNode?.presentation.position)!, duration: 5))
+        
+        node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        
+        node.physicsBody?.categoryBitMask = BitMask.brick
+        
+        node.physicsBody?.collisionBitMask = BitMask.spaceShipCategory
+        
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        print(spaceShipNode?.presentation.position)
+        node.physicsBody?.applyForce((spaceShipNode?.presentation.position)!, asImpulse: true)
+        
+        node.runAction(SCNAction.wait(duration: 5)){
+            [unowned node] in
+            node.removeFromParentNode()
+        }
+        
+    }
+    
+    
+    
+    //MARK: - Render Functions
     
     //Function called when a scene gets rendered
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
@@ -296,5 +299,118 @@ extension GameVC{
             torpedoCollidedSpaceship = false
             
         }
+    }
+    
+    //Called before each frame
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if let camera = sceneView.pointOfView{
+            
+            // Distance from world Origin
+            let distance = length( camera.simdTransform.columns.3 - sceneView.scene.rootNode.simdTransform.columns.3)
+
+            DispatchQueue.main.async {
+                
+                if distance > 2 && !self.alertVisible{
+                    
+                    self.alertVisible = true
+                    
+                    let alert = UIAlertController(title: "Distance", message: "Try moving back to where you initiated your game from", preferredStyle: .alert)
+                    
+                    
+                    let uiImageAlertAction = UIAlertAction(title: "", style: .default)
+                    
+                    let image = #imageLiteral(resourceName: "ARWarning.jpg")
+                    
+                  //  let maxsize = CGSize(width: 245, height: 300)
+                    
+                    let scaleSize = CGSize(width: 245, height: 245/image.size.width*image.size.height)
+                    let reSizedImage = image.resize(with: scaleSize)
+                    
+                    uiImageAlertAction.setValue(reSizedImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "Image")
+                    
+                    alert.addAction(uiImageAlertAction)
+                    
+                    
+                    let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        self.alertVisible = false
+                    })
+                    
+                    
+                    alert.addAction(okAlert)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+            
+        }
+    }
+    
+    // Triggered when a anchor is detected
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        if let imageAnchor = anchor as? ARImageAnchor{
+            
+            
+            sceneView.scene.rootNode.addChildNode(smokeyNode)
+            
+            var actionArray : [SCNAction] = []
+            
+            actionArray.append( SCNAction.wait(duration: 5))
+            
+            actionArray.append( SCNAction.removeFromParentNode())
+            
+            smokeyNode.runAction(SCNAction.sequence(actionArray))
+            
+            
+            
+            if let spaceShipNode = self.spaceShipNode?.clone() {
+                
+                
+                spaceShipNode.position = SCNVector3(x: imageAnchor.transform.columns.3.x, y: imageAnchor.transform.columns.3.y, z: imageAnchor.transform.columns.3.z  )
+                
+                
+                spaceShipNode.scale = SCNVector3(0, 0, 0)
+                
+                spaceShipNode.runAction(SCNAction.scale(to: 2, duration: 5))
+                
+                
+                self.sceneView.scene.rootNode.addChildNode(spaceShipNode)
+                print("found model")
+                
+            }
+            
+            //    virtualModelNode = ModelManipulator.shared.getNodeFromDae(modelName: imageAnchor.referenceImage.name,scale: 0.05,introAnimation: true,withDuration: 2)
+            //   ModelManipulator.shared.removeAllNodes(node: virtualModelNode)
+            
+            //sceneView.scene.rootNode.childNodes.map{$0.removeFromParentNode()}
+            //  ModelManipulator.shared.removeAllNodes(node: sceneView.scene.rootNode)
+            
+            
+            
+            
+            
+            //   torpedoNode   = createTorpedoNode()
+            
+            //   explosionNode = createExplosionNode()
+            
+            
+            
+        }
+        return nil
+        
+    }
+}
+
+
+extension UIImage {
+    
+    func resize(with size: CGSize) -> UIImage? {
+        // size has to be integer, otherwise it could get white lines
+        // let size = CGSize(width: floor(self.size.width * scale), height: floor(self.size.height * scale))
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }
