@@ -271,9 +271,14 @@ extension GameVC{
     
     //MARK: -  Get Camera Position
     func getCameraPosition() -> SCNVector3 {
-        let transform = sceneView.session.currentFrame?.camera.transform
-        let pos = MDLTransform(matrix:transform!)
-        return SCNVector3(pos.translation.x, pos.translation.y, pos.translation.z)
+//        let transform = sceneView.session.currentFrame?.camera.transform
+//        let pos = MDLTransform(matrix:transform!)
+//        return SCNVector3(pos.translation.x, pos.translation.y, pos.translation.z)
+        
+        let cameraTransform = sceneView.pointOfView!.simdTransform
+        let newPos = simd_mul(cameraTransform, simd_make_float4(0,0,0,1))
+        return SCNVector3(newPos.x, newPos.y, newPos.z)
+        
        // return sceneView.pointOfView!.position
     }
     
