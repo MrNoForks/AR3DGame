@@ -22,8 +22,8 @@ struct BitMask {
 
 extension GameVC{
     
-    func createSpaceShipNode() -> SCNNode?{
-        if let node = ModelLoader().loadModel(modelName: "UFO_Alpha", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 1){
+    func createSpaceShipNode(with name : String) -> SCNNode?{
+        if let node = ModelLoader().loadModel(modelName: name, positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 1){
             // ModelLoader().loadModel(modelName: "UFO_A", positionX: 0, positionY: 0, positionZ: -0.7, modelSize: 0.025)
             
             //CollisionBitMask 0 means Idc about collision as we are gonna handle it
@@ -271,10 +271,10 @@ extension GameVC{
     
     //MARK: -  Get Camera Position
     func getCameraPosition() -> SCNVector3 {
-   //     let transform = sceneView.session.currentFrame?.camera.transform
-      //  let pos = MDLTransform(matrix:transform!)
-     //   return SCNVector3(pos.translation.x, pos.translation.y, pos.translation.z)
-        return sceneView.pointOfView!.position
+        let transform = sceneView.session.currentFrame?.camera.transform
+        let pos = MDLTransform(matrix:transform!)
+        return SCNVector3(pos.translation.x, pos.translation.y, pos.translation.z)
+       // return sceneView.pointOfView!.position
     }
     
     
@@ -368,6 +368,7 @@ extension GameVC{
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         if let imageAnchor = anchor as? ARImageAnchor{
             
+            spaceShipNode = createSpaceShipNode(with : imageAnchor.referenceImage.name!)
             
             sceneView.scene.rootNode.addChildNode(smokeyNode)
             
@@ -389,7 +390,7 @@ extension GameVC{
                 
                 spaceShipNode.scale = SCNVector3(0, 0, 0)
                 
-                spaceShipNode.runAction(SCNAction.scale(to: 2, duration: 5))
+                spaceShipNode.runAction(SCNAction.scale(to: 1, duration: 5))
                 
                 
                 self.sceneView.scene.rootNode.addChildNode(spaceShipNode)

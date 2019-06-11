@@ -5,13 +5,16 @@
   },
   "resources" : [
     {
-      "filename" : "Alpha_UFO.arreferenceimage"
-    },
-    {
-      "filename" : "IMG_0061.arreferenceimage"
-    },
-    {
       "filename" : "UFO_A.arreferenceimage"
+    },
+    {
+      "filename" : "UFO_Alpha.arreferenceimage"
+    },
+    {
+      "filename" : "UFO_B.arreferenceimage"
+    },
+    {
+      "filename" : "UFO_D.arreferenceimage"
     }
   ]
 }

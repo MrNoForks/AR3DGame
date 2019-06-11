@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B0200AB22895559007DA53D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200A922895559007DA53D /* explosion.mp3 */; };
 		6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0200AA22895559007DA53D /* torpedo.mp3 */; };
+		6B462D9122AF8CCA0078265C /* UFO_A.dae in Resources */ = {isa = PBXBuildFile; fileRef = 6B462D9022AF8CCA0078265C /* UFO_A.dae */; };
 		6B89CCE02293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */; };
 		6B89CCE12293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */; };
 		6B89CCE22293C02E00E258AF /* FiredScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B89CCD52293C02E00E258AF /* FiredScene.scn */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		6B0200A922895559007DA53D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		6B0200AA22895559007DA53D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		6B462D9022AF8CCA0078265C /* UFO_A.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; name = UFO_A.dae; path = AR3DGame/UFO_A.scnassets/UFO_A.dae; sourceTree = SOURCE_ROOT; };
 		6B89CCD32293C02E00E258AF /* Metal_Galvanized_001_basecolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_basecolor.jpg; sourceTree = "<group>"; };
 		6B89CCD42293C02E00E258AF /* Metal_Galvanized_001_metallic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Metal_Galvanized_001_metallic.jpg; sourceTree = "<group>"; };
 		6B89CCD52293C02E00E258AF /* FiredScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = FiredScene.scn; sourceTree = "<group>"; };
@@ -167,11 +169,11 @@
 			children = (
 				6BB3874F2296E57A0019D299 /* UFO_Alpha */,
 				6BB3875D2296E57A0019D299 /* UFO_A */,
-				6BB387602296E57A0019D299 /* UFO_F */,
+				6BB387702296E57A0019D299 /* UFO_B */,
 				6BB387642296E57A0019D299 /* UFO_C */,
 				6BB387682296E57A0019D299 /* UFO_D */,
 				6BB3876C2296E57A0019D299 /* UFO_E */,
-				6BB387702296E57A0019D299 /* UFO_B */,
+				6BB387602296E57A0019D299 /* UFO_F */,
 			);
 			path = UFO;
 			sourceTree = "<group>";
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				6BB3875E2296E57A0019D299 /* UFO_A_Normal.jpg */,
+				6B462D9022AF8CCA0078265C /* UFO_A.dae */,
 				6BB3875F2296E57A0019D299 /* UFO_A_Diffuse.jpg */,
 			);
 			path = UFO_A;
@@ -403,6 +406,7 @@
 				9BC687402282D5A5005F2CBD /* Main.storyboard in Resources */,
 				6B89CCEA2293C02E00E258AF /* FireExplosion.scnp in Resources */,
 				6BB387842296E57A0019D299 /* UFO_F.dae in Resources */,
+				6B462D9122AF8CCA0078265C /* UFO_A.dae in Resources */,
 				6B0200AC22895559007DA53D /* torpedo.mp3 in Resources */,
 				6BB387792296E57A0019D299 /* UFO_Glossiness.png in Resources */,
 				6BB387912296E57A0019D299 /* UFO_B_Normal.jpg in Resources */,

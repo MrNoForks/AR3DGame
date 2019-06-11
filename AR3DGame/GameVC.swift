@@ -39,7 +39,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         super.viewDidLoad()
         
         
-        spaceShipNode = createSpaceShipNode()
+      //  spaceShipNode = createSpaceShipNode()
 
         //Setting  gravity to 0 from default(which is 9.8)
         sceneView.scene.physicsWorld.gravity = SCNVector3Zero
@@ -103,7 +103,7 @@ class GameVC: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
         
         configuration.detectionImages = trackedImages
         
-        configuration.maximumNumberOfTrackedImages = 0
+        configuration.maximumNumberOfTrackedImages = 1
         
         sceneView.session.run(configuration, options: [.resetTracking,.removeExistingAnchors])
     }
