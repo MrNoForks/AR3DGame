@@ -278,6 +278,14 @@ extension GameVC{
     }
     
     
+    func removeAllNodes(){
+
+        for child in sceneView.scene.rootNode.childNodes {
+            child.removeFromParentNode()
+        }
+        
+    }
+    
     //MARK: - Render Functions
     
     //Function called when a scene gets rendered
@@ -367,6 +375,9 @@ extension GameVC{
     // Triggered when a anchor is detected
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         if let imageAnchor = anchor as? ARImageAnchor{
+            
+            //Removing All nodes
+            removeAllNodes()
             
             spaceShipNode = createSpaceShipNode(with : imageAnchor.referenceImage.name!)
             
